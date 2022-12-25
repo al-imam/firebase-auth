@@ -1,6 +1,4 @@
-import classes from "./home.module.css";
-
-function Home() {
+const Home: React.FunctionComponent = () => {
   return (
     <h1
       style={{
@@ -10,6 +8,6 @@ function Home() {
       Your in home
     </h1>
   );
-}
+};
 
 export default Home;
