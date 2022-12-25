@@ -1,0 +1,27 @@
+.inputs {
+  --fg-color: hsl(217, 12%, 21%);
+  --border: hsl(216, 8%, 88%);
+  --border-active: hsl(213, 79%, 50%);
+  --border-long: hsl(210, 100%, 95%);
+  --placeholder-color: hsl(0, 0%, 75%);
+
+  background-color: white;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  color: var(--fg-color);
+  caret-color: var(--border-active);
+  font-family: "noto sans", sans-serif;
+  font-weight: 500;
+  font-size: 1.225rem;
+  outline: none;
+  padding: 0.75rem;
+}
+
+.inputs:focus {
+  border: 1px solid var(--border-active);
+  box-shadow: var(--border-long) 0px 0px 0px 2px;
+}
+
+.inputs::placeholder {
+  color: var(--placeholder-color);
+}
