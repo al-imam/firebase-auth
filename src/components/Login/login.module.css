@@ -1,0 +1,94 @@
+.form {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 6px 6px;
+  padding: 2rem 1rem;
+  margin-inline: auto;
+
+  --pb-bg-color: #1878f3;
+
+  --input-tx-color: #1d212a;
+  --border-fa-color: #1a74e2;
+  --outline-color: rgba(26, 116, 226, 0.1);
+  --b-bg-color: #42b72a;
+
+  row-gap: 1.5rem;
+}
+
+.log {
+  display: block;
+  width: 100%;
+  background-color: var(--pb-bg-color);
+  font-size: 1.25rem;
+  font-family: Cabin, sans-serif;
+  font-weight: 700;
+  padding: 0.75rem 0;
+  border-radius: 0.25rem;
+  border: none;
+  color: white;
+}
+
+.log:hover {
+  filter: brightness(1.2);
+}
+
+.log:focus,
+.log:active {
+  outline: 2px solid var(--outline-color);
+}
+
+.forget {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  text-decoration: none;
+  word-spacing: 2px;
+  font-family: Cabin, sans-serif;
+  color: var(--pb-bg-color);
+  font-weight: 400;
+  margin-top: -0.5rem;
+  margin-bottom: -0.25rem;
+}
+
+.forget:hover {
+  text-decoration: underline var(--pb-bg-color);
+}
+
+.line {
+  border: none;
+  height: 1px;
+  margin-block: -0.25rem;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(17, 17, 17, 0.1),
+    rgba(0, 0, 0, 0)
+  );
+  width: 100%;
+  padding: 0;
+}
+
+.newAccount {
+  display: block;
+  margin-inline: auto;
+  padding: 0.5rem 1rem;
+  background-color: var(--b-bg-color);
+  border: none;
+  border-radius: 0.25rem;
+  font-family: Cabin, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.newAccount:hover {
+  filter: brightness(0.95);
+}
+
+.newAccount:active {
+  filter: brightness(0.9);
+  outline: 3px solid var(--outline-color);
+}
