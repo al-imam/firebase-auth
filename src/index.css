@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Noto+Sans:wght@400;500&display=swap");
+
+.container {
+  --min-bw: 20rem;
+  --gap-sm-inline: 3rem;
+  --gap-lg-inline: 45rem;
+  --gap-inline: clamp(
+    var(--min-bw),
+    calc(100vw - var(--gap-sm-inline)),
+    var(--gap-lg-inline)
+  );
+  width: var(--gap-inline);
+  margin-inline: auto;
+}

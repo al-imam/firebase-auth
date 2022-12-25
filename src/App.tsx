@@ -1,18 +1,20 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import SingUp from "./components/SingUp/SingUp";
 
-function App() {
+const App: React.FunctionComponent = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/singup" element={<SingUp />} />
-      </Routes>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/singup" element={<SingUp />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
