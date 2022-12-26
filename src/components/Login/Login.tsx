@@ -1,3 +1,4 @@
+import Anchor from "../Anchor/Anchor";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import classes from "./login.module.css";
@@ -8,13 +9,9 @@ const Login: React.FunctionComponent = () => {
       <Input type="text" placeholder="Enter email address" />
       <Input type="password" placeholder="Enter password" />
       <Button text="Log in" />
-      <a href="#" className={classes.forget}>
-        Forget password?
-      </a>
+      <Anchor text="Forget password" />
       <hr className={classes.line} />
-      <a href="#" className={classes.newAccount}>
-        Create New Account
-      </a>
+      <Anchor text="Create new account" variant="button" />
     </form>
   );
 };

@@ -8,60 +8,19 @@
   padding: 2rem 1rem;
   margin-inline: auto;
 
-  --anchor-fg: hsl(214, 91%, 53%);
-  --anchor: hsl(110 63% 44%);
-  --anchor-hover: hsl(110, 67%, 38%);
-  --anchor-active: hsl(110, 73%, 33%);
-
   row-gap: 1rem;
 }
 
-.forget {
-  display: block;
-  text-align: center;
-  font-size: 1rem;
-  text-decoration: none;
-  font-family: Cabin, sans-serif;
-  color: var(--anchor-fg);
-  font-weight: 400;
-}
-
-.forget:hover {
-  text-decoration: underline var(--anchor-fg);
-}
-
 .line {
-  border: none;
-  height: 1px;
-  margin: 0;
   background-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0),
     rgba(17, 17, 17, 0.1),
     rgba(0, 0, 0, 0)
   );
-  width: 100%;
-  padding: 0;
-}
-
-.newAccount {
-  display: block;
-  margin-inline: auto;
-  padding: 0.5rem 1rem;
-  background-color: var(--anchor);
-  text-decoration: none;
   border: none;
-  border-radius: 0.25rem;
-  font-family: Cabin, sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: white;
-}
-
-.newAccount:hover {
-  background-color: var(--anchor-hover);
-}
-
-.newAccount:active {
-  background-color: var(--anchor-active);
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
