@@ -8,9 +8,13 @@ const SingUp: React.FunctionComponent = () => {
   return (
     <Form>
       <h1 className={classes.h1}>SingUp Form</h1>
-      <Input type="text" placeholder="Email" />
-      <Input type="password" placeholder="Password" />
-      <Input type="password" placeholder="Confirm password" />
+      <Input type="text" placeholder="Email" name="email" />
+      <Input type="password" placeholder="Password" name="password" />
+      <Input
+        type="password"
+        placeholder="Confirm password"
+        name="confirmPassword"
+      />
       <Button text="Sing Up" />
       <p className={classes.p}>
         Already have account?
