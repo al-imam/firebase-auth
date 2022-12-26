@@ -9,8 +9,8 @@ const Login: React.FunctionComponent = () => {
   return (
     <Form>
       <h1 className={classes.h1}>Login Form</h1>
-      <Input type="text" placeholder="Enter email address" />
-      <Input type="password" placeholder="Enter password" />
+      <Input type="text" placeholder="Enter email address" name="email" />
+      <Input type="password" placeholder="Enter password" name="password" />
       <Button text="Log in" />
       <Anchor to="/forget-password" text="Forget password" />
       <Hr />
