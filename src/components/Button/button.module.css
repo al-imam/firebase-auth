@@ -16,10 +16,15 @@
   width: 100%;
 }
 
-.Button:hover {
+.Button:hover:enabled {
   background-color: var(--bg-hover);
 }
 
-.Button:active {
+.Button:active:enabled {
   background-color: var(--bg-active);
+}
+
+.Button:disabled {
+  opacity: 0.7;
+  cursor: wait;
 }
