@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&family=Noto+Sans:wght@400;500&display=swap");
 
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .container {
   --min-bw: 20rem;
   --gap-sm-inline: 3rem;
@@ -10,5 +17,9 @@
     var(--gap-lg-inline)
   );
   width: var(--gap-inline);
-  margin-inline: auto;
+  margin: 3rem auto 1rem;
+}
+
+body {
+  background-color: whitesmoke;
 }
