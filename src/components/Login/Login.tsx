@@ -7,6 +7,16 @@ import Input from "../Input/Input";
 const Login: React.FunctionComponent = () => {
   return (
     <Form>
+      <h1
+        style={{
+          fontFamily: "cabin, 'sans serif'",
+          marginBottom: "1rem",
+          textAlign: "center",
+          color: "hsl(214deg 89% 52%)",
+        }}
+      >
+        Login Form
+      </h1>
       <Input type="text" placeholder="Enter email address" />
       <Input type="password" placeholder="Enter password" />
       <Button text="Log in" />
