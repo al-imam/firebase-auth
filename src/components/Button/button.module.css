@@ -1,0 +1,25 @@
+.Button {
+  --bg-color: hsl(214deg 89% 52%);
+  --bg-hover: hsl(214deg 82% 49%);
+  --bg-active: hsl(218deg 51% 33%);
+  --fg-color: hsl(0, 0%, 100%);
+
+  background-color: var(--bg-color);
+  border: none;
+  border-radius: 0.25rem;
+  color: var(--fg-color);
+  display: block;
+  font-size: 1.25rem;
+  font-family: Cabin, sans-serif;
+  font-weight: 700;
+  padding: 0.75rem 0;
+  width: 100%;
+}
+
+.Button:hover {
+  background-color: var(--bg-hover);
+}
+
+.Button:active {
+  background-color: var(--bg-active);
+}
