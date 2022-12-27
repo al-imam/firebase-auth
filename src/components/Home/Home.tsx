@@ -16,7 +16,13 @@ const Home: React.FunctionComponent = () => {
       </p>
       <Button text="Update profile" />
       <Hr />
-      <Anchor text="Log out" />
+      <button
+        className={classes.link}
+        disabled={loading}
+        onClick={handleLogOut}
+      >
+        Log Out
+      </button>
     </div>
   );
 };

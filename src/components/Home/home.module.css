@@ -24,3 +24,32 @@
   font-weight: 500;
   text-align: center;
 }
+
+.link {
+  --anchor-fg: hsl(214, 91%, 53%);
+  --anchor-hover: hsl(110, 67%, 38%);
+  --anchor-active: hsl(110, 73%, 33%);
+  --anchor: hsl(110 63% 44%);
+  --anchor-white: hsl(0, 0%, 100%);
+
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: max-content;
+  margin-inline: auto;
+  font-size: 1rem;
+  text-decoration: none;
+  font-family: Cabin, sans-serif;
+  color: var(--anchor-fg);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline var(--anchor-fg);
+}
+
+.link:disabled {
+  opacity: 0.5;
+}
