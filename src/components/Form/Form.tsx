@@ -6,7 +6,7 @@ interface FormProps {
 }
 
 const Form: React.FunctionComponent<FormProps> = ({ children, onSubmit }) => (
-  <form className={classes.form} onSubmit={onSubmit}>
+  <form className={classes.form} onSubmit={onSubmit} noValidate>
     {children}
   </form>
 );
