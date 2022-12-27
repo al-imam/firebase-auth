@@ -1,0 +1,10 @@
+.alert {
+  display: block;
+  font-family: cabin, sans-serif;
+  font-size: 1.125rem;
+  background-color: lightpink;
+  color: #1f214a;
+  border-left: 0.25rem solid #666fe3;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
