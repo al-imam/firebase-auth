@@ -31,6 +31,7 @@ export const AuthProvider: React.FunctionComponent<AuthContextProps> = ({
   children,
 }) => {
   const [currentUser, setCurrentUSer] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   function singUp(email: string, password: string): Promise<UserCredential> {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -43,6 +44,7 @@ export const AuthProvider: React.FunctionComponent<AuthContextProps> = ({
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUSer(user);
+      setLoading(false);
       console.dir(user);
     });
 
@@ -55,5 +57,9 @@ export const AuthProvider: React.FunctionComponent<AuthContextProps> = ({
     login,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 };
