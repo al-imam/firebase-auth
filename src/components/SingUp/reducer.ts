@@ -42,7 +42,7 @@ export function reducer(state: InitState, action: ACTION) {
     case "error":
       return {
         ...state,
-        error: payload,
+        error: payload.length === 0 ? null : payload,
       };
 
     default:
