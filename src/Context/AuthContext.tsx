@@ -10,7 +10,7 @@ import app from "../firebase";
 
 const auth = getAuth(app);
 
-interface ValueType {
+export interface ValueType {
   currentUser: User | null;
   singUp: (email: string, password: string) => Promise<UserCredential>;
 }
@@ -47,5 +47,6 @@ export const AuthProvider: React.FunctionComponent<AuthContextProps> = ({
     currentUser,
     singUp,
   };
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
