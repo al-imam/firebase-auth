@@ -4,50 +4,7 @@ import Button from "../Button/Button";
 import Form from "../Form/Form";
 import Input from "../Input/Input";
 import classes from "./singUp.module.css";
-
-interface InitState {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
-const initializerArg: InitState = {
-  email: "",
-  password: "",
-  confirmPassword: "",
-};
-
-interface ACTION {
-  type: "email" | "password" | "confirmPassword";
-  payload: string;
-}
-
-function reducer(state: InitState, action: ACTION) {
-  const { type, payload } = action;
-
-  switch (type) {
-    case "email":
-      return {
-        ...state,
-        email: payload,
-      };
-
-    case "password":
-      return {
-        ...state,
-        password: payload,
-      };
-
-    case "confirmPassword":
-      return {
-        ...state,
-        confirmPassword: payload,
-      };
-
-    default:
-      throw new Error("type don't exist ");
-  }
-}
+import { initializerArg, reducer } from "./reducer";
 
 const SingUp: React.FunctionComponent = () => {
   const [{ email, password, confirmPassword }, dispatch] = useReducer(
