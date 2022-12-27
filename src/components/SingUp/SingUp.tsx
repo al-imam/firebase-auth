@@ -16,10 +16,8 @@ function isEmpty(e: string, p: string, cp: string) {
 }
 
 const SingUp: React.FunctionComponent = () => {
-  const [{ email, password, confirmPassword, error }, dispatch] = useReducer(
-    reducer,
-    initializerArg
-  );
+  const [{ email, password, confirmPassword, error, loading }, dispatch] =
+    useReducer(reducer, initializerArg);
   const { singUp } = useAuth()!;
 
   async function onSubmit(evt: React.FormEvent) {
@@ -36,17 +34,30 @@ const SingUp: React.FunctionComponent = () => {
       return dispatch({ type: "error", payload: "Enter valid email address" });
     }
 
+    if (password.length <= 5 || confirmPassword.length <= 5) {
+      return dispatch({
+        type: "error",
+        payload: "Password must be 6 character or higher",
+      });
+    }
+
     if (password !== confirmPassword) {
       return dispatch({ type: "error", payload: "Passwords do not match" });
     }
 
     try {
       dispatch({ type: "error", payload: "" });
+      dispatch({ type: "loading", payload: "true" });
       await singUp(email, password);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      dispatch({ type: "loading", payload: "" });
+      console.dir(error);
+      if (error.code === "auth/email-already-in-use") {
+        return dispatch({ type: "error", payload: "Email already in use!" });
+      }
       return dispatch({ type: "error", payload: "something went wrong" });
     }
+    dispatch({ type: "loading", payload: "" });
   }
 
   return (
@@ -77,7 +88,7 @@ const SingUp: React.FunctionComponent = () => {
           dispatch({ type: "confirmPassword", payload: value })
         }
       />
-      <Button text="Sing Up" />
+      <Button text="Sing Up" disable={loading} />
       <p className={classes.p}>
         Already have account?
         <Anchor to="/login" text="Login" />

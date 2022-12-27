@@ -3,6 +3,7 @@ interface InitState {
   password: string;
   confirmPassword: string;
   error: null | string;
+  loading: boolean;
 }
 
 export const initializerArg: InitState = {
@@ -10,10 +11,11 @@ export const initializerArg: InitState = {
   password: "",
   confirmPassword: "",
   error: null,
+  loading: false,
 };
 
 interface ACTION {
-  type: "email" | "password" | "confirmPassword" | "error";
+  type: "email" | "password" | "confirmPassword" | "error" | "loading";
   payload: string;
 }
 
@@ -43,6 +45,12 @@ export function reducer(state: InitState, action: ACTION) {
       return {
         ...state,
         error: payload.length === 0 ? null : payload,
+      };
+
+    case "loading":
+      return {
+        ...state,
+        loading: Boolean(payload),
       };
 
     default:
