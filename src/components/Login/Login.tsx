@@ -8,6 +8,7 @@ import Input from "../Input/Input";
 import classes from "./login.module.css";
 import { emailRegex } from "../SingUp/SingUp";
 import { initializerArg, reducer } from "./reducer";
+import Alert from "../Alert/Alert";
 
 function isEmpty(e: string, p: string) {
   return e.length === 0 || p.length === 0;
@@ -18,7 +19,7 @@ const Login: React.FunctionComponent = () => {
     reducer,
     initializerArg
   );
-  const { singUp } = useAuth()!;
+  const { login } = useAuth()!;
 
   async function onSubmit(evt: React.FormEvent) {
     evt.preventDefault();
@@ -30,6 +31,13 @@ const Login: React.FunctionComponent = () => {
       });
     }
 
+    if (password.length <= 5) {
+      return dispatch({
+        type: "error",
+        payload: "Password contain at last 6 character",
+      });
+    }
+
     if (!email.match(emailRegex)) {
       return dispatch({ type: "error", payload: "Enter valid email address" });
     }
@@ -37,17 +45,30 @@ const Login: React.FunctionComponent = () => {
     try {
       dispatch({ type: "loading", payload: "yes" });
       dispatch({ type: "error", payload: "" });
-      await singUp(email, password);
-    } catch (error) {
-      console.log(error);
+
+      await login(email, password);
+    } catch (error: any) {
+      console.dir(error);
+
+      dispatch({ type: "loading", payload: "" });
+
+      if (["auth/user-not-found", "auth/wrong-password"].includes(error.code)) {
+        return dispatch({
+          type: "error",
+          payload: "Email and password not match",
+        });
+      }
+
       return dispatch({ type: "error", payload: "something went wrong" });
     }
-    dispatch({ type: "loading", payload: "no" });
+
+    dispatch({ type: "loading", payload: "" });
   }
 
   return (
     <Form onSubmit={onSubmit}>
       <h1 className={classes.h1}>Login Form</h1>
+      {error && <Alert message={error} />}
       <Input
         type="text"
         placeholder="Email address"
@@ -64,7 +85,7 @@ const Login: React.FunctionComponent = () => {
           dispatch({ type: "password", payload: value })
         }
       />
-      <Button text="Log in" />
+      <Button text="Log in" disable={loading} />
       <Anchor to="/forget-password" text="Forget password" />
       <Hr />
       <Anchor to="/singup" text="Create new account" variant="button" />

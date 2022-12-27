@@ -42,7 +42,7 @@ export function reducer(state: InitState, action: ACTION) {
     case "loading":
       return {
         ...state,
-        loading: payload === "no" ? false : true,
+        loading: Boolean(payload),
       };
 
     default:
