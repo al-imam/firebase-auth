@@ -8,7 +8,8 @@ import classes from "./singUp.module.css";
 import { initializerArg, reducer } from "./reducer";
 import { useAuth } from "../../Context/AuthContext";
 
-const emailRegex = /^[a-zA-Z]([a-zA-Z0-9\.]){2,}@[a-z]{3,7}\.[a-z]{2,5}$/;
+export const emailRegex =
+  /^[a-zA-Z]([a-zA-Z0-9\.]){2,}@[a-z]{3,7}\.[a-z]{2,5}$/;
 
 function isEmpty(e: string, p: string, cp: string) {
   return e.length === 0 || p.length === 0 || cp.length === 0;
