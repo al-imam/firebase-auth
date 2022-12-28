@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
   getAuth,
   onAuthStateChanged,
   User,
@@ -15,6 +16,7 @@ export interface ValueType {
   currentUser: User | null;
   singUp: (email: string, password: string) => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
+  logOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<ValueType | null>(null);
@@ -41,6 +43,10 @@ export const AuthProvider: React.FunctionComponent<AuthContextProps> = ({
     return signInWithEmailAndPassword(auth, email, password);
   }
 
+  function logOut(): Promise<void> {
+    return signOut(auth);
+  }
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUSer(user);
@@ -55,6 +61,7 @@ export const AuthProvider: React.FunctionComponent<AuthContextProps> = ({
     currentUser,
     singUp,
     login,
+    logOut,
   };
 
   return (
