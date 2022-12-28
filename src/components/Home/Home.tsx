@@ -1,12 +1,22 @@
 import Button from "../Button/Button";
 import Hr from "../Hr/Hr";
-import Anchor from "../Anchor/Anchor";
 import classes from "./home.module.css";
 import profile from "../../assets/bighead.svg";
 import { useAuth } from "../../Context/AuthContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FunctionComponent = () => {
-  const { currentUser } = useAuth()!;
+  const [loading, setLoading] = useState(false);
+  const { currentUser, logOut } = useAuth()!;
+  const navigate = useNavigate();
+
+  async function handleLogOut() {
+    setLoading(true);
+    await logOut();
+    navigate("/login");
+    setLoading(false);
+  }
 
   return (
     <div className={classes.home}>
