@@ -8,7 +8,7 @@ interface Private {
 
 const PrivateRoute: React.FunctionComponent<Private> = ({ children, path }) => {
   const { currentUser } = useAuth()!;
-  return currentUser === null ? children : <Navigate to={path} />;
+  return currentUser === null ? children : <Navigate to={path} replace />;
 };
 
 export default PrivateRoute;

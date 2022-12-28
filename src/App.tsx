@@ -14,7 +14,7 @@ const App: React.FunctionComponent = () => (
           <Route
             path="/"
             element={
-              <PrivateRoute path="/singup">
+              <PrivateRoute path="/login">
                 <Home />
               </PrivateRoute>
             }

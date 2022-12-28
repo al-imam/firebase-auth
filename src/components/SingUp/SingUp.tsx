@@ -7,6 +7,7 @@ import Alert from "../Alert/Alert";
 import classes from "./singUp.module.css";
 import { initializerArg, reducer } from "./reducer";
 import { useAuth } from "../../Context/AuthContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const emailRegex =
   /^[a-zA-Z]([a-zA-Z0-9\.]){2,}@[a-z]{3,7}\.[a-z]{2,5}$/;
@@ -19,6 +20,7 @@ const SingUp: React.FunctionComponent = () => {
   const [{ email, password, confirmPassword, error, loading }, dispatch] =
     useReducer(reducer, initializerArg);
   const { singUp } = useAuth()!;
+  const navigate = useNavigate();
 
   async function onSubmit(evt: React.FormEvent) {
     evt.preventDefault();
@@ -49,6 +51,7 @@ const SingUp: React.FunctionComponent = () => {
       dispatch({ type: "error", payload: "" });
       dispatch({ type: "loading", payload: "true" });
       await singUp(email, password);
+      navigate("/", { replace: true });
     } catch (error: any) {
       dispatch({ type: "loading", payload: "" });
       console.dir(error);

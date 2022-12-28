@@ -9,6 +9,7 @@ import classes from "./login.module.css";
 import { emailRegex } from "../SingUp/SingUp";
 import { initializerArg, reducer } from "./reducer";
 import Alert from "../Alert/Alert";
+import { useNavigate } from "react-router-dom";
 
 function isEmpty(e: string, p: string) {
   return e.length === 0 || p.length === 0;
@@ -20,6 +21,7 @@ const Login: React.FunctionComponent = () => {
     initializerArg
   );
   const { login } = useAuth()!;
+  const navigate = useNavigate();
 
   async function onSubmit(evt: React.FormEvent) {
     evt.preventDefault();
@@ -47,6 +49,7 @@ const Login: React.FunctionComponent = () => {
       dispatch({ type: "error", payload: "" });
 
       await login(email, password);
+      navigate("/", { replace: true });
     } catch (error: any) {
       console.dir(error);
 
