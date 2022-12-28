@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
+import { emailRegex } from "../SingUp/SingUp";
 import Alert from "../Alert/Alert";
 import Anchor from "../Anchor/Anchor";
 import Button from "../Button/Button";
@@ -19,10 +22,31 @@ const initializerArg: InitializerArg = {
 
 const Forget: React.FunctionComponent = () => {
   const [email, setEmail] = useState("");
-  const [{ loading, error }, setLE] = useState<InitializerArg>(initializerArg);
+  const [{ loading, error }, setErrorAndLoading] =
+    useState<InitializerArg>(initializerArg);
+
+  const navigate = useNavigate();
+  const { resetPassword } = useAuth();
 
   async function onSubmit(evt: React.FormEvent) {
     evt.preventDefault();
+
+    if (!email.match(emailRegex)) {
+      return setErrorAndLoading((p) => ({
+        ...p,
+        error: email.length === 0 ? "Email is required" : "Email is not valid",
+      }));
+    }
+
+    try {
+      setErrorAndLoading((p) => ({ loading: true, error: null }));
+      await resetPassword(email);
+      navigate("/login", { replace: true });
+    } catch (error: any) {
+      setErrorAndLoading({ loading: false, error: "something went wrong" });
+    }
+
+    setErrorAndLoading((p) => ({ ...p, loading: false }));
   }
 
   return (
