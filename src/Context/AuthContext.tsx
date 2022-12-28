@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
   getAuth,
   onAuthStateChanged,
   User,
@@ -17,12 +18,13 @@ export interface ValueType {
   singUp: (email: string, password: string) => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
   logOut: () => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<ValueType | null>(null);
 
-export const useAuth = (): ValueType | null => {
-  return useContext(AuthContext);
+export const useAuth = (): ValueType => {
+  return useContext(AuthContext) as ValueType;
 };
 
 interface AuthContextProps {
@@ -47,11 +49,14 @@ export const AuthProvider: React.FunctionComponent<AuthContextProps> = ({
     return signOut(auth);
   }
 
+  function resetPassword(email: string): Promise<void> {
+    return sendPasswordResetEmail(auth, email);
+  }
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUSer(user);
       setLoading(false);
-      console.dir(user);
     });
 
     return unSubscribe;
@@ -62,6 +67,7 @@ export const AuthProvider: React.FunctionComponent<AuthContextProps> = ({
     singUp,
     login,
     logOut,
+    resetPassword,
   };
 
   return (
