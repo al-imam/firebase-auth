@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Forget from "./components/Forget/Forget";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import SingUp from "./components/SingUp/SingUp";
@@ -35,6 +36,7 @@ const App: React.FunctionComponent = () => (
               </PublicRoute>
             }
           />
+          <Route path="/forget-password" element={<Forget />} />
         </Routes>
       </div>
     </AuthProvider>
