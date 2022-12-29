@@ -4,7 +4,7 @@ import classes from "./home.module.css";
 import profile from "../../assets/bighead.svg";
 import { useAuth } from "../../Context/AuthContext";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Alert from "../Alert/Alert";
 
 const Home: React.FunctionComponent = () => {
@@ -31,7 +31,9 @@ const Home: React.FunctionComponent = () => {
       <p className={classes.name}>
         {currentUser && "Email - " + currentUser.email}
       </p>
-      <Button text="Update profile" />
+      <Link className={classes.a} to="/update-profile">
+        <Button text="Update profile" />
+      </Link>
       <Hr />
       {error && <Alert message={error} />}
       <button
