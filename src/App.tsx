@@ -46,7 +46,7 @@ const App: React.FunctionComponent = () => (
             }
           />
           <Route
-            path="update-profile"
+            path="/update-profile"
             element={
               <PrivateRoute path="/login">
                 <Update />
