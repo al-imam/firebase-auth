@@ -3,6 +3,7 @@ import Forget from "./components/Forget/Forget";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import SingUp from "./components/SingUp/SingUp";
+import Update from "./components/Update/Update";
 import { AuthProvider } from "./Context/AuthContext";
 import PrivateRoute from "./Route/PrivateRoute";
 import PublicRoute from "./Route/PublicRoute";
@@ -44,6 +45,7 @@ const App: React.FunctionComponent = () => (
               </PublicRoute>
             }
           />
+          <Route path="update-profile" element={<Update />} />
         </Routes>
       </div>
     </AuthProvider>
