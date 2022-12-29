@@ -3,6 +3,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+  updatePassword,
+  updateEmail,
   getAuth,
   onAuthStateChanged,
   User,
@@ -19,6 +21,8 @@ export interface ValueType {
   login: (email: string, password: string) => Promise<UserCredential>;
   logOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
+  changeEmail: (email: string) => Promise<void>;
+  changePassword: (password: string) => Promise<void>;
 }
 
 const AuthContext = createContext<ValueType | null>(null);
@@ -53,6 +57,14 @@ export const AuthProvider: React.FunctionComponent<AuthContextProps> = ({
     return sendPasswordResetEmail(auth, email);
   }
 
+  function changeEmail(email: string): Promise<void> {
+    return updateEmail(currentUser as User, email);
+  }
+
+  function changePassword(password: string): Promise<void> {
+    return updatePassword(currentUser as User, password);
+  }
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUSer(user);
@@ -68,6 +80,8 @@ export const AuthProvider: React.FunctionComponent<AuthContextProps> = ({
     login,
     logOut,
     resetPassword,
+    changeEmail,
+    changePassword,
   };
 
   return (
