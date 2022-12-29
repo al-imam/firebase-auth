@@ -7,7 +7,7 @@ import Alert from "../Alert/Alert";
 import classes from "./update.module.css";
 import { initializerArg, reducer } from "../SingUp/reducer";
 import { useAuth } from "../../Context/AuthContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const emailRegex =
   /^[a-zA-Z]([a-zA-Z0-9\.]){2,}@[a-z]{3,7}\.[a-z]{2,5}$/;
@@ -19,14 +19,15 @@ function isEmpty(e: string, p: string, cp: string) {
 const SingUp: React.FunctionComponent = () => {
   const [{ email, password, confirmPassword, error, loading }, dispatch] =
     useReducer(reducer, initializerArg);
-  const [check, setCheck] = useState(false);
-  const { singUp, currentUser } = useAuth();
+  const [checkPassWord, setCheckPass] = useState(false);
+  const { changeEmail, changePassword, currentUser } = useAuth();
+
   const navigate = useNavigate();
 
   async function onSubmit(evt: React.FormEvent) {
     evt.preventDefault();
 
-    if (check && isEmpty(email, password, confirmPassword)) {
+    if (checkPassWord && isEmpty(email, password, confirmPassword)) {
       return dispatch({
         type: "error",
         payload: "Email, password, confirm password required!",
@@ -43,20 +44,41 @@ const SingUp: React.FunctionComponent = () => {
       });
     }
 
-    if (check && Boolean(password.length <= 5 || confirmPassword.length <= 5)) {
+    if (
+      checkPassWord &&
+      Boolean(password.length <= 5 || confirmPassword.length <= 5)
+    ) {
       return dispatch({
         type: "error",
         payload: "Password must be 6 character or higher",
       });
     }
 
-    if (check && password !== confirmPassword) {
+    if (checkPassWord && password !== confirmPassword) {
       return dispatch({ type: "error", payload: "Passwords do not match" });
     }
 
     if (currentUser?.email === email) {
       return dispatch({ type: "error", payload: "Enter new email 😒" });
     }
+
+    dispatch({ type: "loading", payload: "yes" });
+
+    const promises = [];
+    promises.push(changeEmail(email));
+    if (checkPassWord) {
+      promises.push(changePassword(password));
+    }
+
+    Promise.all(promises)
+      .then(() => {})
+      .catch((error) => {
+        console.dir(error);
+        dispatch({ type: "error", payload: error.code });
+      })
+      .finally(() => {
+        dispatch({ type: "loading", payload: "" });
+      });
   }
 
   return (
@@ -75,12 +97,12 @@ const SingUp: React.FunctionComponent = () => {
         <input
           type="checkbox"
           id="show"
-          checked={check}
-          onChange={() => setCheck((c) => !c)}
+          checked={checkPassWord}
+          onChange={() => setCheckPass((c) => !c)}
         />
         <label htmlFor="show">Change password?</label>
       </div>
-      {check && (
+      {checkPassWord && (
         <>
           <Input
             value={password}
