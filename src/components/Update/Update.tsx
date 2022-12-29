@@ -26,6 +26,8 @@ const Update: React.FunctionComponent = () => {
   const { changeEmail, changePassword, currentUser, confirmChanges } =
     useAuth();
 
+  const [success, setSuccess] = useState<null | string>(null);
+
   const navigate = useNavigate();
 
   async function onSubmit(evt: React.FormEvent) {
@@ -37,7 +39,8 @@ const Update: React.FunctionComponent = () => {
     ) {
       return dispatch({
         type: "error",
-        payload: "Email, currentPassWord, password, confirmPassword required!",
+        payload:
+          "Email, current-password, password and confirm-password required!",
       });
     }
 
@@ -46,7 +49,7 @@ const Update: React.FunctionComponent = () => {
         type: "error",
         payload:
           email.length === 0
-            ? "Email is required"
+            ? "Email and current-password is required"
             : "Enter valid email address",
       });
     }
@@ -56,8 +59,8 @@ const Update: React.FunctionComponent = () => {
         type: "error",
         payload:
           currentPassWord.length === 0
-            ? "currentPassWord is required"
-            : "currentPassWord will be at lest 6 character",
+            ? "Current passWord is required"
+            : "Current password will be at lest 6 character!",
       });
     }
 
@@ -81,54 +84,44 @@ const Update: React.FunctionComponent = () => {
 
     dispatch({ type: "loading", payload: "yes" });
     dispatch({ type: "error", payload: "" });
+    setSuccess(null);
 
     try {
-      await confirmChanges(currentPassWord);
+      await confirmChanges(currentPassWord).then(async () => {
+        await changeEmail(email);
+      });
+
+      if (checkPassWord) {
+        await confirmChanges(currentPassWord).then(async () => {
+          await changePassword(password);
+        });
+      }
+
+      setSuccess(
+        "Your changed save successfully😊. You will redirect to home page after 5 second."
+      );
+
+      setTimeout(() => navigate("/"), 5000);
     } catch (error: any) {
+      console.dir(error);
+
       dispatch({
         type: "error",
         payload:
           error.code === "auth/wrong-password"
-            ? "Current password is wrong"
+            ? "Current password is wrong try again!"
             : "Something went wrong",
       });
+    } finally {
       dispatch({ type: "loading", payload: "" });
-      return console.dir(error);
     }
-
-    try {
-      await changeEmail(email);
-    } catch (error) {
-      console.dir(error);
-      dispatch({ type: "error", payload: "failed to re log in new password" });
-      return dispatch({ type: "loading", payload: "" });
-    }
-
-    try {
-      await confirmChanges(currentPassWord);
-    } catch (error) {
-      dispatch({
-        type: "error",
-        payload: "Something went wrong",
-      });
-      dispatch({ type: "loading", payload: "" });
-      return console.dir(error);
-    }
-
-    try {
-      await changePassword(password);
-    } catch (error) {
-      console.dir(error);
-      dispatch({ type: "error", payload: "failed to re log in new password" });
-    }
-
-    dispatch({ type: "loading", payload: "" });
   }
 
   return (
     <Form onSubmit={onSubmit}>
       <h1 className={classes.h1}>Update profile</h1>
       {error && <Alert message={error} />}
+      {success && <Alert message={success} variant="success" />}
       <Input
         value={email}
         type="text"
@@ -174,7 +167,7 @@ const Update: React.FunctionComponent = () => {
       )}
       <Button text="Update profile" disable={loading} />
       <p className={classes.p}>
-        cancel updating profile?
+        Cancel updating profile?
         <Anchor to="/" text="Home" />
       </p>
     </Form>
