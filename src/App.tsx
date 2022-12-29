@@ -45,7 +45,14 @@ const App: React.FunctionComponent = () => (
               </PublicRoute>
             }
           />
-          <Route path="update-profile" element={<Update />} />
+          <Route
+            path="update-profile"
+            element={
+              <PrivateRoute path="/login">
+                <Update />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
     </AuthProvider>
