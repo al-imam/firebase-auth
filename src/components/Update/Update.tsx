@@ -18,7 +18,7 @@ function isEmpty(e: string, p: string, cp: string, curp: string) {
   );
 }
 
-const SingUp: React.FunctionComponent = () => {
+const Update: React.FunctionComponent = () => {
   const [{ email, password, confirmPassword, error, loading }, dispatch] =
     useReducer(reducer, initializerArg);
   const [checkPassWord, setCheckPass] = useState(false);
@@ -80,13 +80,17 @@ const SingUp: React.FunctionComponent = () => {
     }
 
     dispatch({ type: "loading", payload: "yes" });
+    dispatch({ type: "error", payload: "" });
 
     try {
       await confirmChanges(currentPassWord);
-    } catch (error) {
+    } catch (error: any) {
       dispatch({
         type: "error",
-        payload: "make sure your current password is not wrong try again",
+        payload:
+          error.code === "auth/wrong-password"
+            ? "Current password is wrong"
+            : "Something went wrong",
       });
       dispatch({ type: "loading", payload: "" });
       return console.dir(error);
@@ -105,7 +109,7 @@ const SingUp: React.FunctionComponent = () => {
     } catch (error) {
       dispatch({
         type: "error",
-        payload: "re auth error",
+        payload: "Something went wrong",
       });
       dispatch({ type: "loading", payload: "" });
       return console.dir(error);
@@ -177,4 +181,4 @@ const SingUp: React.FunctionComponent = () => {
   );
 };
 
-export default SingUp;
+export default Update;
