@@ -12,25 +12,32 @@ import { useNavigate } from "react-router-dom";
 export const emailRegex =
   /^[a-zA-Z]([a-zA-Z0-9\.]){2,}@[a-z]{3,7}\.[a-z]{2,5}$/;
 
-function isEmpty(e: string, p: string, cp: string) {
-  return e.length === 0 || p.length === 0 || cp.length === 0;
+function isEmpty(e: string, p: string, cp: string, curp: string) {
+  return (
+    e.length === 0 || p.length === 0 || cp.length === 0 || curp.length === 0
+  );
 }
 
 const SingUp: React.FunctionComponent = () => {
   const [{ email, password, confirmPassword, error, loading }, dispatch] =
     useReducer(reducer, initializerArg);
   const [checkPassWord, setCheckPass] = useState(false);
-  const { changeEmail, changePassword, currentUser } = useAuth();
+  const [currentPassWord, setCurrentPassWord] = useState("");
+  const { changeEmail, changePassword, currentUser, confirmChanges } =
+    useAuth();
 
   const navigate = useNavigate();
 
   async function onSubmit(evt: React.FormEvent) {
     evt.preventDefault();
 
-    if (checkPassWord && isEmpty(email, password, confirmPassword)) {
+    if (
+      checkPassWord &&
+      isEmpty(email, password, confirmPassword, currentPassWord)
+    ) {
       return dispatch({
         type: "error",
-        payload: "Email, password, confirm password required!",
+        payload: "Email, currentPassWord, password, confirmPassword required!",
       });
     }
 
@@ -41,6 +48,16 @@ const SingUp: React.FunctionComponent = () => {
           email.length === 0
             ? "Email is required"
             : "Enter valid email address",
+      });
+    }
+
+    if (currentPassWord.length <= 5) {
+      return dispatch({
+        type: "error",
+        payload:
+          currentPassWord.length === 0
+            ? "currentPassWord is required"
+            : "currentPassWord will be at lest 6 character",
       });
     }
 
@@ -64,21 +81,44 @@ const SingUp: React.FunctionComponent = () => {
 
     dispatch({ type: "loading", payload: "yes" });
 
-    const promises = [];
-    promises.push(changeEmail(email));
-    if (checkPassWord) {
-      promises.push(changePassword(password));
+    try {
+      await confirmChanges(currentPassWord);
+    } catch (error) {
+      dispatch({
+        type: "error",
+        payload: "make sure your current password is not wrong try again",
+      });
+      dispatch({ type: "loading", payload: "" });
+      return console.dir(error);
     }
 
-    Promise.all(promises)
-      .then(() => {})
-      .catch((error) => {
-        console.dir(error);
-        dispatch({ type: "error", payload: error.code });
-      })
-      .finally(() => {
-        dispatch({ type: "loading", payload: "" });
+    try {
+      await changeEmail(email);
+    } catch (error) {
+      console.dir(error);
+      dispatch({ type: "error", payload: "failed to re log in new password" });
+      return dispatch({ type: "loading", payload: "" });
+    }
+
+    try {
+      await confirmChanges(currentPassWord);
+    } catch (error) {
+      dispatch({
+        type: "error",
+        payload: "re auth error",
       });
+      dispatch({ type: "loading", payload: "" });
+      return console.dir(error);
+    }
+
+    try {
+      await changePassword(password);
+    } catch (error) {
+      console.dir(error);
+      dispatch({ type: "error", payload: "failed to re log in new password" });
+    }
+
+    dispatch({ type: "loading", payload: "" });
   }
 
   return (
@@ -92,6 +132,12 @@ const SingUp: React.FunctionComponent = () => {
         dispatch={(value: string) =>
           dispatch({ type: "email", payload: value })
         }
+      />
+      <Input
+        value={currentPassWord}
+        type="password"
+        placeholder="Current password"
+        dispatch={(value: string) => setCurrentPassWord(value)}
       />
       <div className={classes.checkGroup}>
         <input
