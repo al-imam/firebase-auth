@@ -36,7 +36,14 @@ const App: React.FunctionComponent = () => (
               </PublicRoute>
             }
           />
-          <Route path="/forget-password" element={<Forget />} />
+          <Route
+            path="/forget-password"
+            element={
+              <PublicRoute path="/">
+                <Forget />
+              </PublicRoute>
+            }
+          />
         </Routes>
       </div>
     </AuthProvider>
