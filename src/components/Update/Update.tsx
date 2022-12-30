@@ -127,12 +127,23 @@ const Update: React.FunctionComponent = () => {
 
   function setPass() {
     dispatch({ type: "error", payload: "" });
-    setCheckPass((p) => !p);
+    setCheckPass((e) => {
+      if (e === true) {
+        dispatch({ type: "confirmPassword", payload: "" });
+        dispatch({ type: "password", payload: "" });
+      }
+      return !e;
+    });
   }
 
   function setMail() {
     dispatch({ type: "error", payload: "" });
-    setCheckEmail((e) => !e);
+    setCheckEmail((e) => {
+      if (e === true) {
+        dispatch({ type: "email", payload: "" });
+      }
+      return !e;
+    });
   }
 
   return (
