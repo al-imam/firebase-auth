@@ -8,16 +8,13 @@
 }
 
 .container {
-  --min-bw: 20rem;
-  --gap-sm-inline: 3rem;
-  --gap-lg-inline: 45rem;
-  --gap-inline: clamp(
-    var(--min-bw),
-    calc(100vw - var(--gap-sm-inline)),
-    var(--gap-lg-inline)
-  );
-  width: var(--gap-inline);
+  --round: 0.5rem;
+  background-color: white;
+  border-radius: var(--round);
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 6px 6px;
   margin: 3rem auto 1rem;
+  padding-bottom: 2rem;
+  width: 30rem;
 }
 
 body {

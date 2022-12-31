@@ -4,7 +4,6 @@ import { useAuth } from "../../Context/AuthContext";
 import Anchor from "../Anchor/Anchor";
 import Button from "../Button/Button";
 import Form from "../Form/Form";
-import Hr from "../Hr/Hr";
 import Input from "../Input/Input";
 import { initializerArg, reducer } from "./reducer";
 import Alert from "../Alert/Alert";
@@ -94,9 +93,8 @@ const Login: React.FunctionComponent = () => {
         />
         <Anchor to="/forget-password" text="Forget Password?" left={true} />
         <Button text="Log in" disable={loading} />
-        <Hr />
-        <GoTo to="/singup" text="Don't have account?" anchorText="SingUp" />
       </Form>
+      <GoTo to="/singup" text="Don't have account?" anchorText="SingUp" />
     </>
   );
 };
