@@ -8,6 +8,7 @@ import Form from "../Form/Form";
 import Hr from "../Hr/Hr";
 import Input from "../Input/Input";
 import classes from "./forget.module.css";
+import GoTo from "../GoTO/GoTo";
 
 interface InitializerArg {
   loading: boolean;
@@ -79,10 +80,7 @@ const Forget: React.FunctionComponent = () => {
       <Button text="Password reset" disable={loading || Boolean(success)} />
       <Anchor to="/login" text="Log In" />
       <Hr />
-      <p className={classes.p}>
-        Don't have account?
-        <Anchor to="/singup" text="SingUp" />
-      </p>
+      <GoTo to="/singup" text="Don't have account?" anchorText="SingUp" />
     </Form>
   );
 };

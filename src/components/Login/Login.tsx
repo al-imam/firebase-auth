@@ -10,6 +10,7 @@ import { emailRegex } from "../SingUp/SingUp";
 import { initializerArg, reducer } from "./reducer";
 import Alert from "../Alert/Alert";
 import { useNavigate } from "react-router-dom";
+import GoTo from "../GoTO/GoTo";
 
 function isEmpty(e: string, p: string) {
   return e.length === 0 || p.length === 0;
@@ -91,7 +92,7 @@ const Login: React.FunctionComponent = () => {
       <Button text="Log in" disable={loading} />
       <Anchor to="/forget-password" text="Forget password" />
       <Hr />
-      <Anchor to="/singup" text="Create new account" variant="button" />
+      <GoTo to="/singup" text="Don't have account?" anchorText="SingUp" />
     </Form>
   );
 };
