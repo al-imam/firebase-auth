@@ -1,6 +1,7 @@
+import GoTo from "../GoTO/GoTo";
 import CheckBox from "../CheckBox/CheckBox";
 import React, { useReducer, useState } from "react";
-import Anchor from "../Anchor/Anchor";
+
 import Button from "../Button/Button";
 import Form from "../Form/Form";
 import Input from "../Input/Input";
@@ -202,10 +203,7 @@ const Update: React.FunctionComponent = () => {
         text="Update profile"
         disable={loading || (checkEmail === false && checkPassWord === false)}
       />
-      <p className={classes.p}>
-        Cancel updating profile?
-        <Anchor to="/" text="Home" />
-      </p>
+      <GoTo to="/" text="Cancel updating profile?" anchorText="Home" />
     </Form>
   );
 };
