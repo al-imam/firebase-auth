@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
-import { emailRegex } from "../SingUp/SingUp";
 import Alert from "../Alert/Alert";
 import Button from "../Button/Button";
 import Form from "../Form/Form";
@@ -9,6 +8,7 @@ import Hr from "../Hr/Hr";
 import Input from "../Input/Input";
 import classes from "./forget.module.css";
 import GoTo from "../GoTO/GoTo";
+import emailRegex from "../../util/emailRegex";
 
 interface InitializerArg {
   loading: boolean;

@@ -6,11 +6,11 @@ import Form from "../Form/Form";
 import Hr from "../Hr/Hr";
 import Input from "../Input/Input";
 import classes from "./login.module.css";
-import { emailRegex } from "../SingUp/SingUp";
 import { initializerArg, reducer } from "./reducer";
 import Alert from "../Alert/Alert";
 import { useNavigate } from "react-router-dom";
 import GoTo from "../GoTO/GoTo";
+import emailRegex from "../../util/emailRegex";
 
 function isEmpty(e: string, p: string) {
   return e.length === 0 || p.length === 0;
