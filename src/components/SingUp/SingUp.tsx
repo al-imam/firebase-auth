@@ -72,6 +72,7 @@ const SingUp: React.FunctionComponent = () => {
         value={email}
         type="text"
         placeholder="Email"
+        ac="username email"
         dispatch={(value: string) =>
           dispatch({ type: "email", payload: value })
         }
@@ -80,6 +81,7 @@ const SingUp: React.FunctionComponent = () => {
         value={password}
         type="password"
         placeholder="Password"
+        ac="new-password"
         dispatch={(value: string) =>
           dispatch({ type: "password", payload: value })
         }
@@ -88,6 +90,7 @@ const SingUp: React.FunctionComponent = () => {
         value={confirmPassword}
         type="password"
         placeholder="Confirm password"
+        ac="new-password"
         dispatch={(value: string) =>
           dispatch({ type: "confirmPassword", payload: value })
         }

@@ -80,6 +80,7 @@ const Forget: React.FunctionComponent = () => {
         type="text"
         placeholder="Email address"
         value={email}
+        ac="username email"
         dispatch={(value: string) => setEmail(value)}
       />
       <Button text="Password reset" disable={loading || Boolean(success)} />

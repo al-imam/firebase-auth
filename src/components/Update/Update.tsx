@@ -157,6 +157,7 @@ const Update: React.FunctionComponent = () => {
         value={currentPassWord}
         type="password"
         placeholder="Current password"
+        ac="current-password"
         dispatch={(value: string) => setCurrentPassWord(value)}
       />
       <CheckBox
@@ -167,8 +168,9 @@ const Update: React.FunctionComponent = () => {
       {checkEmail && (
         <Input
           value={email}
-          type="text"
+          type="email"
           placeholder="New email"
+          ac="username email"
           dispatch={(value: string) =>
             dispatch({ type: "email", payload: value })
           }
@@ -185,6 +187,7 @@ const Update: React.FunctionComponent = () => {
             value={password}
             type="password"
             placeholder="New password"
+            ac="new-password"
             dispatch={(value: string) =>
               dispatch({ type: "password", payload: value })
             }
@@ -193,6 +196,7 @@ const Update: React.FunctionComponent = () => {
             value={confirmPassword}
             type="password"
             placeholder="New confirm password"
+            ac="new-password"
             dispatch={(value: string) =>
               dispatch({ type: "confirmPassword", payload: value })
             }
@@ -200,7 +204,7 @@ const Update: React.FunctionComponent = () => {
         </>
       )}
       <Button
-        text="Update profile"
+        text="Save"
         disable={loading || (checkEmail === false && checkPassWord === false)}
       />
       <GoTo to="/" text="Cancel updating profile?" anchorText="Home" />

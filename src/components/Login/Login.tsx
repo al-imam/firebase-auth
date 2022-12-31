@@ -74,8 +74,9 @@ const Login: React.FunctionComponent = () => {
       <h1 className={classes.h1}>Login Form</h1>
       {error && <Alert message={error} />}
       <Input
-        type="text"
+        type="email"
         placeholder="Email address"
+        ac="username email"
         value={email}
         dispatch={(value: string) =>
           dispatch({ type: "email", payload: value })
@@ -85,6 +86,7 @@ const Login: React.FunctionComponent = () => {
         type="password"
         placeholder="Password"
         value={password}
+        ac="current-password"
         dispatch={(value: string) =>
           dispatch({ type: "password", payload: value })
         }

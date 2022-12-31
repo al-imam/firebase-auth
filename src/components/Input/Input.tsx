@@ -5,6 +5,7 @@ interface InputProps {
   placeholder: string;
   dispatch: (value: string) => void;
   value: string;
+  ac?: string;
 }
 
 const Input: React.FunctionComponent<InputProps> = ({
@@ -12,6 +13,7 @@ const Input: React.FunctionComponent<InputProps> = ({
   placeholder,
   dispatch,
   value,
+  ac,
 }) => (
   <input
     value={value}
@@ -21,6 +23,7 @@ const Input: React.FunctionComponent<InputProps> = ({
     className={classes.inputs}
     type={type}
     placeholder={placeholder}
+    autoComplete={ac}
     required
   />
 );
