@@ -1,5 +1,4 @@
 import Button from "../Button/Button";
-import Hr from "../Hr/Hr";
 import classes from "./home.module.css";
 import profile from "../../assets/bighead.svg";
 import { useAuth } from "../../Context/AuthContext";
