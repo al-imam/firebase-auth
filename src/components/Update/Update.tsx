@@ -1,3 +1,4 @@
+import CheckBox from "../CheckBox/CheckBox";
 import React, { useReducer, useState } from "react";
 import Anchor from "../Anchor/Anchor";
 import Button from "../Button/Button";
@@ -136,7 +137,7 @@ const Update: React.FunctionComponent = () => {
     });
   }
 
-  function setMail() {
+  function setEmailAddress() {
     dispatch({ type: "error", payload: "" });
     setCheckEmail((e) => {
       if (e === true) {
@@ -151,22 +152,17 @@ const Update: React.FunctionComponent = () => {
       <h1 className={classes.h1}>Update profile</h1>
       {error && <Alert message={error} />}
       {success && <Alert message={success} variant="success" />}
-
       <Input
         value={currentPassWord}
         type="password"
         placeholder="Current password"
         dispatch={(value: string) => setCurrentPassWord(value)}
       />
-      <div className={classes.checkGroup}>
-        <input
-          type="checkbox"
-          id="show-email"
-          checked={checkEmail}
-          onChange={setMail}
-        />
-        <label htmlFor="show-email">Change email?</label>
-      </div>
+      <CheckBox
+        value={checkEmail}
+        setValue={setEmailAddress}
+        text="Change email?"
+      />
       {checkEmail && (
         <Input
           value={email}
@@ -177,15 +173,11 @@ const Update: React.FunctionComponent = () => {
           }
         />
       )}
-      <div className={classes.checkGroup}>
-        <input
-          type="checkbox"
-          id="show-password"
-          checked={checkPassWord}
-          onChange={setPass}
-        />
-        <label htmlFor="show-password">Change password?</label>
-      </div>
+      <CheckBox
+        value={checkPassWord}
+        setValue={setPass}
+        text="Change password?"
+      />
       {checkPassWord && (
         <>
           <Input
