@@ -1,56 +1,97 @@
 interface InitState {
-  email: string;
-  password: string;
   confirmPassword: string;
+  currentPassword: string;
+  editEmail: boolean;
+  editPassword: boolean;
+  email: string;
   error: null | string;
   loading: boolean;
+  password: string;
+  success: null | string;
 }
 
 export const initializerArg: InitState = {
-  email: "",
-  password: "",
   confirmPassword: "",
+  currentPassword: "",
+  editEmail: false,
+  editPassword: true,
+  email: "",
   error: null,
   loading: false,
+  password: "",
+  success: null,
 };
 
 interface ACTION {
-  type: "email" | "password" | "confirmPassword" | "error" | "loading";
-  payload: string;
+  type:
+    | "current-password"
+    | "email"
+    | "password"
+    | "confirm-password"
+    | "error"
+    | "success"
+    | "loading"
+    | "edit-email"
+    | "edit-password";
+  payload: string | boolean | null;
 }
 
 export function reducer(state: InitState, action: ACTION) {
   const { type, payload } = action;
 
   switch (type) {
+    case "current-password":
+      return {
+        ...state,
+        currentPassword: payload as string,
+      };
+
     case "email":
       return {
         ...state,
-        email: payload,
+        email: payload as string,
       };
 
     case "password":
       return {
         ...state,
-        password: payload,
+        password: payload as string,
       };
 
-    case "confirmPassword":
+    case "confirm-password":
       return {
         ...state,
-        confirmPassword: payload,
+        confirmPassword: payload as string,
       };
 
     case "error":
       return {
         ...state,
-        error: payload.length === 0 ? null : payload,
+        error: payload as string | null,
       };
 
     case "loading":
       return {
         ...state,
-        loading: Boolean(payload),
+        loading: payload as boolean,
+      };
+
+    case "success":
+      return {
+        ...state,
+        success: payload as string | null,
+      };
+
+    case "edit-email":
+      return {
+        ...state,
+        editEmail: payload as boolean,
+      };
+
+    case "edit-password":
+      return {
+        ...state,
+        editPassword: payload as boolean,
       };
 
     default:

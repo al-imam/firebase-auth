@@ -16,7 +16,7 @@ export const initializerArg: InitState = {
 
 interface ACTION {
   type: "email" | "password" | "confirmPassword" | "error" | "loading";
-  payload: string;
+  payload: string | null | boolean;
 }
 
 export function reducer(state: InitState, action: ACTION) {
@@ -26,31 +26,31 @@ export function reducer(state: InitState, action: ACTION) {
     case "email":
       return {
         ...state,
-        email: payload,
+        email: payload as string,
       };
 
     case "password":
       return {
         ...state,
-        password: payload,
+        password: payload as string,
       };
 
     case "confirmPassword":
       return {
         ...state,
-        confirmPassword: payload,
+        confirmPassword: payload as string,
       };
 
     case "error":
       return {
         ...state,
-        error: payload.length === 0 ? null : payload,
+        error: payload as null | string,
       };
 
     case "loading":
       return {
         ...state,
-        loading: Boolean(payload),
+        loading: payload as boolean,
       };
 
     default:

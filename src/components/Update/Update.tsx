@@ -1,17 +1,15 @@
-import GoTo from "../GoTO/GoTo";
-import CheckBox from "../CheckBox/CheckBox";
-import { useReducer, useState } from "react";
-import Button from "../Button/Button";
-import Form from "../Form/Form";
-import Input from "../Input/Input";
-import Alert from "../Alert/Alert";
-import classes from "./update.module.css";
-import { initializerArg, reducer } from "./reducer";
-import { useAuth } from "../../Context/AuthContext";
+import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-
-export const emailRegex =
-  /^[a-zA-Z]([a-zA-Z0-9\.]){2,}@[a-z]{3,7}\.[a-z]{2,5}$/;
+import { useAuth } from "../../Context/AuthContext";
+import emailRegex from "../../util/emailRegex";
+import Alert from "../Alert/Alert";
+import Button from "../Button/Button";
+import CheckBox from "../CheckBox/CheckBox";
+import Form from "../Form/Form";
+import GoTo from "../GoTO/GoTo";
+import Input from "../Input/Input";
+import { initializerArg, reducer } from "./reducer";
+import classes from "./update.module.css";
 
 function isEmpty(e: string, p: string, cp: string, curp: string) {
   return (
@@ -20,21 +18,28 @@ function isEmpty(e: string, p: string, cp: string, curp: string) {
 }
 
 const Update: React.FunctionComponent = () => {
-  const [{ email, password, confirmPassword, error, loading }, dispatch] =
-    useReducer(reducer, initializerArg);
-  const [editPassword, setEditPassword] = useState(true);
-  const [editEmail, setEditEmail] = useState(false);
-  const [currentPassword, setCurrentPassword] = useState("");
+  const [
+    {
+      email,
+      password,
+      confirmPassword,
+      error,
+      loading,
+      success,
+      editEmail,
+      editPassword,
+      currentPassword,
+    },
+    dispatch,
+  ] = useReducer(reducer, initializerArg);
+
   const { changeEmail, changePassword, currentUser, confirmChanges } =
     useAuth();
-
-  const [success, setSuccess] = useState<null | string>(null);
-
   const navigate = useNavigate();
 
   async function onSubmit(evt: React.FormEvent) {
     evt.preventDefault();
-    dispatch({ type: "error", payload: "" });
+    dispatch({ type: "error", payload: null });
 
     if (
       editPassword &&
@@ -48,13 +53,23 @@ const Update: React.FunctionComponent = () => {
       });
     }
 
+    if (currentPassword.length <= 5) {
+      return dispatch({
+        type: "error",
+        payload:
+          currentPassword.length === 0
+            ? "Current password is required"
+            : "Current password will be at lest 6 character!",
+      });
+    }
+
     if (editEmail) {
       if (!email.match(emailRegex)) {
         return dispatch({
           type: "error",
           payload:
             email.length === 0
-              ? "Email and current-password is required"
+              ? "Email is required"
               : "Enter valid email address",
         });
       }
@@ -69,7 +84,7 @@ const Update: React.FunctionComponent = () => {
           type: "error",
           payload:
             password.length === 0
-              ? "New passwords and current password is required"
+              ? "New passwords are required"
               : "Passwords must be grater then 5 character",
         });
       }
@@ -79,19 +94,9 @@ const Update: React.FunctionComponent = () => {
       }
     }
 
-    if (currentPassword.length <= 5) {
-      return dispatch({
-        type: "error",
-        payload:
-          currentPassword.length === 0
-            ? `Current password is required`
-            : "Current password will be at lest 6 character!",
-      });
-    }
-
-    dispatch({ type: "loading", payload: "yes" });
-    dispatch({ type: "error", payload: "" });
-    setSuccess(null);
+    dispatch({ type: "loading", payload: true });
+    dispatch({ type: "error", payload: null });
+    dispatch({ type: "success", payload: null });
 
     try {
       if (editEmail) {
@@ -106,14 +111,14 @@ const Update: React.FunctionComponent = () => {
         });
       }
 
-      setSuccess(
-        "Your changed save successfully😊. You will redirect to home page after 5 second."
-      );
+      dispatch({
+        type: "success",
+        payload:
+          "Your changed save successfully😊. You will redirect to home page after 5 second.",
+      });
 
       setTimeout(() => navigate("/"), 5000);
     } catch (error: any) {
-      console.dir(error);
-
       dispatch({
         type: "error",
         payload:
@@ -122,28 +127,34 @@ const Update: React.FunctionComponent = () => {
             : "Something went wrong",
       });
     } finally {
-      dispatch({ type: "loading", payload: "" });
+      dispatch({ type: "loading", payload: false });
     }
   }
 
-  function setPass() {
-    dispatch({ type: "error", payload: "" });
-    setEditPassword((e) => {
-      if (e === true) {
-        dispatch({ type: "confirmPassword", payload: "" });
-        dispatch({ type: "password", payload: "" });
-      }
-      return !e;
+  function setPassword() {
+    dispatch({ type: "error", payload: null });
+
+    if (editPassword === true) {
+      dispatch({ type: "confirm-password", payload: "" });
+      dispatch({ type: "password", payload: "" });
+    }
+
+    dispatch({
+      type: "edit-password",
+      payload: !editPassword,
     });
   }
 
   function setEmailAddress() {
     dispatch({ type: "error", payload: "" });
-    setEditEmail((e) => {
-      if (e === true) {
-        dispatch({ type: "email", payload: "" });
-      }
-      return !e;
+
+    if (editEmail === true) {
+      dispatch({ type: "email", payload: "" });
+    }
+
+    dispatch({
+      type: "edit-email",
+      payload: !editEmail,
     });
   }
 
@@ -157,7 +168,12 @@ const Update: React.FunctionComponent = () => {
         type="password"
         placeholder="Current password"
         ac="current-password"
-        dispatch={(value: string) => setCurrentPassword(value)}
+        dispatch={(value: string) =>
+          dispatch({
+            type: "current-password",
+            payload: value,
+          })
+        }
       />
       <CheckBox
         value={editEmail}
@@ -177,7 +193,7 @@ const Update: React.FunctionComponent = () => {
       )}
       <CheckBox
         value={editPassword}
-        setValue={setPass}
+        setValue={setPassword}
         text="Change password?"
       />
       {editPassword && (
@@ -197,7 +213,7 @@ const Update: React.FunctionComponent = () => {
             placeholder="New confirm password"
             ac="new-password"
             dispatch={(value: string) =>
-              dispatch({ type: "confirmPassword", payload: value })
+              dispatch({ type: "confirm-password", payload: value })
             }
           />
         </>

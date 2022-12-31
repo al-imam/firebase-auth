@@ -1,15 +1,15 @@
 interface InitState {
   email: string;
-  password: string;
   error: null | string;
   loading: boolean;
+  password: string;
 }
 
 export const initializerArg: InitState = {
   email: "",
-  password: "",
   error: null,
   loading: false,
+  password: "",
 };
 
 interface ACTION {
