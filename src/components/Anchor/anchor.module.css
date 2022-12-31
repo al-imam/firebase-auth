@@ -1,37 +1,24 @@
-.default {
+.link {
   text-align: center;
   font-size: 1rem;
   text-decoration: none;
-  font-family: Cabin, sans-serif;
+  font-family: "cabin", sans-serif;
+  font-weight: 500;
 
-  --anchor-fg: hsl(214, 91%, 53%);
-  --anchor-hover: hsl(110, 67%, 38%);
+  --anchor: hsl(214, 91%, 53%);
+  /* --anchor-hover: hsl(110, 67%, 38%);
   --anchor-active: hsl(110, 73%, 33%);
-  --anchor: hsl(110 63% 44%);
-  --anchor-white: hsl(0, 0%, 100%);
-}
+  --anchor-bg: hsl(110 63% 44%); 
+  --anchor-white: hsl(0, 0%, 100%); */
 
-.link {
-  color: var(--anchor-fg);
+  color: var(--anchor);
   letter-spacing: 0.5px;
 }
 
 .link:hover {
-  text-decoration: underline var(--anchor-fg);
+  text-decoration: 1px underline var(--anchor);
 }
 
-.button {
-  padding: 0.5rem 0;
-  background-color: var(--anchor);
-  border-radius: 0.25rem;
-  font-weight: 600;
-  color: var(--anchor-white);
-}
-
-.button:hover {
-  background-color: var(--anchor-hover);
-}
-
-.button:active {
-  background-color: var(--anchor-active);
+.left {
+  text-align: left;
 }

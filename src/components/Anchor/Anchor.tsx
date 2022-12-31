@@ -4,15 +4,15 @@ import classes from "./anchor.module.css";
 interface AnchorProps {
   text: string;
   to?: string;
-  variant?: "button" | "link";
+  left?: boolean;
 }
 
 const Anchor: React.FunctionComponent<AnchorProps> = ({
   text,
   to = "#",
-  variant = "link",
+  left,
 }) => (
-  <Link to={to} className={`${classes.default} ${classes[variant]}`}>
+  <Link to={to} className={`${classes.link} ${left ? classes.left : ""}`}>
     {text}
   </Link>
 );
