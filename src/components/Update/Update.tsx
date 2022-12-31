@@ -22,9 +22,9 @@ function isEmpty(e: string, p: string, cp: string, curp: string) {
 const Update: React.FunctionComponent = () => {
   const [{ email, password, confirmPassword, error, loading }, dispatch] =
     useReducer(reducer, initializerArg);
-  const [checkPassWord, setCheckPass] = useState(true);
-  const [checkEmail, setCheckEmail] = useState(false);
-  const [currentPassWord, setCurrentPassWord] = useState("");
+  const [editPassword, setEditPassword] = useState(true);
+  const [editEmail, setEditEmail] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
   const { changeEmail, changePassword, currentUser, confirmChanges } =
     useAuth();
 
@@ -37,9 +37,9 @@ const Update: React.FunctionComponent = () => {
     dispatch({ type: "error", payload: "" });
 
     if (
-      checkPassWord &&
-      checkEmail &&
-      isEmpty(email, password, confirmPassword, currentPassWord)
+      editPassword &&
+      editEmail &&
+      isEmpty(email, password, confirmPassword, currentPassword)
     ) {
       return dispatch({
         type: "error",
@@ -48,7 +48,7 @@ const Update: React.FunctionComponent = () => {
       });
     }
 
-    if (checkEmail) {
+    if (editEmail) {
       if (!email.match(emailRegex)) {
         return dispatch({
           type: "error",
@@ -63,7 +63,7 @@ const Update: React.FunctionComponent = () => {
       }
     }
 
-    if (checkPassWord) {
+    if (editPassword) {
       if (password.length <= 5 || confirmPassword.length <= 5) {
         return dispatch({
           type: "error",
@@ -79,11 +79,11 @@ const Update: React.FunctionComponent = () => {
       }
     }
 
-    if (currentPassWord.length <= 5) {
+    if (currentPassword.length <= 5) {
       return dispatch({
         type: "error",
         payload:
-          currentPassWord.length === 0
+          currentPassword.length === 0
             ? `Current password is required`
             : "Current password will be at lest 6 character!",
       });
@@ -94,14 +94,14 @@ const Update: React.FunctionComponent = () => {
     setSuccess(null);
 
     try {
-      if (checkEmail) {
-        await confirmChanges(currentPassWord).then(async () => {
+      if (editEmail) {
+        await confirmChanges(currentPassword).then(async () => {
           await changeEmail(email);
         });
       }
 
-      if (checkPassWord) {
-        await confirmChanges(currentPassWord).then(async () => {
+      if (editPassword) {
+        await confirmChanges(currentPassword).then(async () => {
           await changePassword(password);
         });
       }
@@ -128,7 +128,7 @@ const Update: React.FunctionComponent = () => {
 
   function setPass() {
     dispatch({ type: "error", payload: "" });
-    setCheckPass((e) => {
+    setEditPassword((e) => {
       if (e === true) {
         dispatch({ type: "confirmPassword", payload: "" });
         dispatch({ type: "password", payload: "" });
@@ -139,7 +139,7 @@ const Update: React.FunctionComponent = () => {
 
   function setEmailAddress() {
     dispatch({ type: "error", payload: "" });
-    setCheckEmail((e) => {
+    setEditEmail((e) => {
       if (e === true) {
         dispatch({ type: "email", payload: "" });
       }
@@ -153,18 +153,18 @@ const Update: React.FunctionComponent = () => {
       {error && <Alert message={error} />}
       {success && <Alert message={success} variant="success" />}
       <Input
-        value={currentPassWord}
+        value={currentPassword}
         type="password"
         placeholder="Current password"
         ac="current-password"
-        dispatch={(value: string) => setCurrentPassWord(value)}
+        dispatch={(value: string) => setCurrentPassword(value)}
       />
       <CheckBox
-        value={checkEmail}
+        value={editEmail}
         setValue={setEmailAddress}
         text="Change email?"
       />
-      {checkEmail && (
+      {editEmail && (
         <Input
           value={email}
           type="email"
@@ -176,11 +176,11 @@ const Update: React.FunctionComponent = () => {
         />
       )}
       <CheckBox
-        value={checkPassWord}
+        value={editPassword}
         setValue={setPass}
         text="Change password?"
       />
-      {checkPassWord && (
+      {editPassword && (
         <>
           <Input
             value={password}
@@ -204,7 +204,7 @@ const Update: React.FunctionComponent = () => {
       )}
       <Button
         text="Save"
-        disable={loading || (checkEmail === false && checkPassWord === false)}
+        disable={loading || (editEmail === false && editPassword === false)}
       />
       <GoTo to="/" text="Cancel updating profile?" anchorText="Home" />
     </Form>
