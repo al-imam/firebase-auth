@@ -1,4 +1,5 @@
 import classes from "./checkBox.module.css";
+import { useId } from "react";
 
 interface CheckBoxProps {
   text: string;
@@ -11,15 +12,12 @@ const CheckBox: React.FunctionComponent<CheckBoxProps> = ({
   setValue,
   text,
 }) => {
+  const id = useId();
+
   return (
     <div className={classes.checkGroup}>
-      <input
-        type="checkbox"
-        id="show-email"
-        checked={value}
-        onChange={setValue}
-      />
-      <label htmlFor="show-email">{text}</label>
+      <input type="checkbox" id={id} checked={value} onChange={setValue} />
+      <label htmlFor={id}>{text}</label>
     </div>
   );
 };
