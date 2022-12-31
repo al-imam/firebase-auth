@@ -1,13 +1,12 @@
 import GoTo from "../GoTO/GoTo";
 import CheckBox from "../CheckBox/CheckBox";
-import React, { useReducer, useState } from "react";
-
+import { useReducer, useState } from "react";
 import Button from "../Button/Button";
 import Form from "../Form/Form";
 import Input from "../Input/Input";
 import Alert from "../Alert/Alert";
 import classes from "./update.module.css";
-import { initializerArg, reducer } from "../SingUp/reducer";
+import { initializerArg, reducer } from "./reducer";
 import { useAuth } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
