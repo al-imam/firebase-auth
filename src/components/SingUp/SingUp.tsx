@@ -8,6 +8,7 @@ import classes from "./singUp.module.css";
 import { initializerArg, reducer } from "./reducer";
 import { useAuth } from "../../Context/AuthContext";
 import { Navigate, useNavigate } from "react-router-dom";
+import GoTo from "../GoTO/GoTo";
 
 export const emailRegex =
   /^[a-zA-Z]([a-zA-Z0-9\.]){2,}@[a-z]{3,7}\.[a-z]{2,5}$/;
@@ -92,10 +93,7 @@ const SingUp: React.FunctionComponent = () => {
         }
       />
       <Button text="Sing Up" disable={loading} />
-      <p className={classes.p}>
-        Already have account?
-        <Anchor to="/login" text="Login" />
-      </p>
+      <GoTo to="/login" text="Already have account?" anchorText="LogIn" />
     </Form>
   );
 };
