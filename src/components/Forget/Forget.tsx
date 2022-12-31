@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import { emailRegex } from "../SingUp/SingUp";
 import Alert from "../Alert/Alert";
-import Anchor from "../Anchor/Anchor";
 import Button from "../Button/Button";
 import Form from "../Form/Form";
 import Hr from "../Hr/Hr";
@@ -24,23 +24,25 @@ const initializerArg: InitializerArg = {
 
 const Forget: React.FunctionComponent = () => {
   const [email, setEmail] = useState("");
-  const [{ loading, error, success }, setErrorAndLoading] =
+  const [{ loading, error, success }, setErrorLoadingAndSuccess] =
     useState<InitializerArg>(initializerArg);
 
   const { resetPassword } = useAuth();
+
+  const navigate = useNavigate();
 
   async function onSubmit(evt: React.FormEvent) {
     evt.preventDefault();
 
     if (!email.match(emailRegex)) {
-      return setErrorAndLoading((p) => ({
+      return setErrorLoadingAndSuccess((p) => ({
         ...p,
         error: email.length === 0 ? "Email is required" : "Email is not valid",
       }));
     }
 
     try {
-      setErrorAndLoading((p) => ({
+      setErrorLoadingAndSuccess((p) => ({
         loading: true,
         error: null,
         success: null,
@@ -48,14 +50,17 @@ const Forget: React.FunctionComponent = () => {
 
       await resetPassword(email);
 
-      setErrorAndLoading((p) => ({
+      setErrorLoadingAndSuccess((p) => ({
         error: null,
         loading: false,
-        success: "Password reset link sent on your email address",
+        success:
+          "Password reset link sent successfully check your mail box.😊 you will redirect to login page after 5 second.",
       }));
+
+      setTimeout(() => navigate("/login"), 5000);
     } catch (error: any) {
       console.dir(error);
-      setErrorAndLoading({
+      setErrorLoadingAndSuccess({
         loading: false,
         error:
           error.code === "auth/user-not-found"
@@ -78,7 +83,6 @@ const Forget: React.FunctionComponent = () => {
         dispatch={(value: string) => setEmail(value)}
       />
       <Button text="Password reset" disable={loading || Boolean(success)} />
-      <Anchor to="/login" text="Log In" />
       <Hr />
       <GoTo to="/singup" text="Don't have account?" anchorText="SingUp" />
     </Form>
