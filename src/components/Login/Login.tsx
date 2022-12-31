@@ -1,3 +1,4 @@
+import Heading from "../Heading/Heading";
 import { useReducer } from "react";
 import { useAuth } from "../../Context/AuthContext";
 import Anchor from "../Anchor/Anchor";
@@ -5,7 +6,6 @@ import Button from "../Button/Button";
 import Form from "../Form/Form";
 import Hr from "../Hr/Hr";
 import Input from "../Input/Input";
-import classes from "./login.module.css";
 import { initializerArg, reducer } from "./reducer";
 import Alert from "../Alert/Alert";
 import { useNavigate } from "react-router-dom";
@@ -70,32 +70,34 @@ const Login: React.FunctionComponent = () => {
   }
 
   return (
-    <Form onSubmit={onSubmit}>
-      <h1 className={classes.h1}>Login Form</h1>
-      {error && <Alert message={error} />}
-      <Input
-        type="email"
-        placeholder="Email address"
-        ac="username email"
-        value={email}
-        dispatch={(value: string) =>
-          dispatch({ type: "email", payload: value })
-        }
-      />
-      <Input
-        type="password"
-        placeholder="Password"
-        value={password}
-        ac="current-password"
-        dispatch={(value: string) =>
-          dispatch({ type: "password", payload: value })
-        }
-      />
-      <Anchor to="/forget-password" text="Forget Password?" left={true} />
-      <Button text="Log in" disable={loading} />
-      <Hr />
-      <GoTo to="/singup" text="Don't have account?" anchorText="SingUp" />
-    </Form>
+    <>
+      <Heading text="Login Form" />
+      <Form onSubmit={onSubmit}>
+        {error && <Alert message={error} />}
+        <Input
+          type="email"
+          placeholder="Email address"
+          ac="username email"
+          value={email}
+          dispatch={(value: string) =>
+            dispatch({ type: "email", payload: value })
+          }
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          value={password}
+          ac="current-password"
+          dispatch={(value: string) =>
+            dispatch({ type: "password", payload: value })
+          }
+        />
+        <Anchor to="/forget-password" text="Forget Password?" left={true} />
+        <Button text="Log in" disable={loading} />
+        <Hr />
+        <GoTo to="/singup" text="Don't have account?" anchorText="SingUp" />
+      </Form>
+    </>
   );
 };
 
