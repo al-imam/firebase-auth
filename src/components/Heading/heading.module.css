@@ -1,0 +1,15 @@
+.heading {
+  --primary-color: hsl(214deg 89% 52%);
+  --white: white;
+  height: 5rem;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h1 {
+  font-family: cabin, sans-serif;
+  color: var(--white);
+  user-select: none;
+}
