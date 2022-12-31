@@ -7,6 +7,7 @@ import Button from "../Button/Button";
 import CheckBox from "../CheckBox/CheckBox";
 import Form from "../Form/Form";
 import GoTo from "../GoTO/GoTo";
+import Heading from "../Heading/Heading";
 import Input from "../Input/Input";
 import { initializerArg, reducer } from "./reducer";
 import classes from "./update.module.css";
@@ -159,71 +160,73 @@ const Update: React.FunctionComponent = () => {
   }
 
   return (
-    <Form onSubmit={onSubmit}>
-      <h1 className={classes.h1}>Update profile</h1>
-      {error && <Alert message={error} />}
-      {success && <Alert message={success} variant="success" />}
-      <Input
-        value={currentPassword}
-        type="password"
-        placeholder="Current password"
-        ac="current-password"
-        dispatch={(value: string) =>
-          dispatch({
-            type: "current-password",
-            payload: value,
-          })
-        }
-      />
-      <CheckBox
-        value={editEmail}
-        setValue={setEmailAddress}
-        text="Change email?"
-      />
-      {editEmail && (
+    <>
+      <Heading text="Update Profile" />
+      <Form onSubmit={onSubmit}>
+        {error && <Alert message={error} />}
+        {success && <Alert message={success} variant="success" />}
         <Input
-          value={email}
-          type="email"
-          placeholder="New email"
-          ac="username email"
+          value={currentPassword}
+          type="password"
+          placeholder="Current password"
+          ac="current-password"
           dispatch={(value: string) =>
-            dispatch({ type: "email", payload: value })
+            dispatch({
+              type: "current-password",
+              payload: value,
+            })
           }
         />
-      )}
-      <CheckBox
-        value={editPassword}
-        setValue={setPassword}
-        text="Change password?"
-      />
-      {editPassword && (
-        <>
+        <CheckBox
+          value={editEmail}
+          setValue={setEmailAddress}
+          text="Change email?"
+        />
+        {editEmail && (
           <Input
-            value={password}
-            type="password"
-            placeholder="New password"
-            ac="new-password"
+            value={email}
+            type="email"
+            placeholder="New email"
+            ac="username email"
             dispatch={(value: string) =>
-              dispatch({ type: "password", payload: value })
+              dispatch({ type: "email", payload: value })
             }
           />
-          <Input
-            value={confirmPassword}
-            type="password"
-            placeholder="New confirm password"
-            ac="new-password"
-            dispatch={(value: string) =>
-              dispatch({ type: "confirm-password", payload: value })
-            }
-          />
-        </>
-      )}
-      <Button
-        text="Save"
-        disable={loading || (editEmail === false && editPassword === false)}
-      />
+        )}
+        <CheckBox
+          value={editPassword}
+          setValue={setPassword}
+          text="Change password?"
+        />
+        {editPassword && (
+          <>
+            <Input
+              value={password}
+              type="password"
+              placeholder="New password"
+              ac="new-password"
+              dispatch={(value: string) =>
+                dispatch({ type: "password", payload: value })
+              }
+            />
+            <Input
+              value={confirmPassword}
+              type="password"
+              placeholder="New confirm password"
+              ac="new-password"
+              dispatch={(value: string) =>
+                dispatch({ type: "confirm-password", payload: value })
+              }
+            />
+          </>
+        )}
+        <Button
+          text="Save"
+          disable={loading || (editEmail === false && editPassword === false)}
+        />
+      </Form>
       <GoTo to="/" text="Cancel updating profile?" anchorText="Home" />
-    </Form>
+    </>
   );
 };
 

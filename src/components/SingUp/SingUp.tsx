@@ -6,6 +6,7 @@ import Alert from "../Alert/Alert";
 import Button from "../Button/Button";
 import Form from "../Form/Form";
 import GoTo from "../GoTO/GoTo";
+import Heading from "../Heading/Heading";
 import Input from "../Input/Input";
 import { initializerArg, reducer } from "./reducer";
 import classes from "./singUp.module.css";
@@ -62,39 +63,41 @@ const SingUp: React.FunctionComponent = () => {
   }
 
   return (
-    <Form onSubmit={onSubmit}>
-      <h1 className={classes.h1}>SingUp Form</h1>
-      {error && <Alert message={error} />}
-      <Input
-        value={email}
-        type="text"
-        placeholder="Email"
-        ac="username email"
-        dispatch={(value: string) =>
-          dispatch({ type: "email", payload: value })
-        }
-      />
-      <Input
-        value={password}
-        type="password"
-        placeholder="Password"
-        ac="new-password"
-        dispatch={(value: string) =>
-          dispatch({ type: "password", payload: value })
-        }
-      />
-      <Input
-        value={confirmPassword}
-        type="password"
-        placeholder="Confirm password"
-        ac="new-password"
-        dispatch={(value: string) =>
-          dispatch({ type: "confirmPassword", payload: value })
-        }
-      />
-      <Button text="Sing Up" disable={loading} />
+    <>
+      <Heading text="Singup Form" />
+      <Form onSubmit={onSubmit}>
+        {error && <Alert message={error} />}
+        <Input
+          value={email}
+          type="text"
+          placeholder="Email"
+          ac="username email"
+          dispatch={(value: string) =>
+            dispatch({ type: "email", payload: value })
+          }
+        />
+        <Input
+          value={password}
+          type="password"
+          placeholder="Password"
+          ac="new-password"
+          dispatch={(value: string) =>
+            dispatch({ type: "password", payload: value })
+          }
+        />
+        <Input
+          value={confirmPassword}
+          type="password"
+          placeholder="Confirm password"
+          ac="new-password"
+          dispatch={(value: string) =>
+            dispatch({ type: "confirmPassword", payload: value })
+          }
+        />
+        <Button text="Sing Up" disable={loading} />
+      </Form>
       <GoTo to="/login" text="Already have account?" anchorText="LogIn" />
-    </Form>
+    </>
   );
 };
 

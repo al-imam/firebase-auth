@@ -34,7 +34,6 @@ const Home: React.FunctionComponent = () => {
       <Link className={classes.a} to="/update-profile">
         <Button text="Update profile" />
       </Link>
-      <Hr />
       {error && <Alert message={error} />}
       <button
         className={classes.link}

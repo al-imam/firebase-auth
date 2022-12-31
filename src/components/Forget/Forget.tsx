@@ -9,6 +9,7 @@ import Input from "../Input/Input";
 import classes from "./forget.module.css";
 import GoTo from "../GoTO/GoTo";
 import emailRegex from "../../util/emailRegex";
+import Heading from "../Heading/Heading";
 
 interface InitializerArg {
   loading: boolean;
@@ -72,21 +73,22 @@ const Forget: React.FunctionComponent = () => {
   }
 
   return (
-    <Form onSubmit={onSubmit}>
-      <h1 className={classes.h1}>Password reset</h1>
-      {error && <Alert message={error} />}
-      {success && <Alert message={success} variant="success" />}
-      <Input
-        type="text"
-        placeholder="Email address"
-        value={email}
-        ac="username email"
-        dispatch={(value: string) => setEmail(value)}
-      />
-      <Button text="Password reset" disable={loading || Boolean(success)} />
-      <Hr />
+    <>
+      <Heading text="Password Reset Form" />
+      <Form onSubmit={onSubmit}>
+        {error && <Alert message={error} />}
+        {success && <Alert message={success} variant="success" />}
+        <Input
+          type="text"
+          placeholder="Email address"
+          value={email}
+          ac="username email"
+          dispatch={(value: string) => setEmail(value)}
+        />
+        <Button text="Password reset" disable={loading || Boolean(success)} />
+      </Form>
       <GoTo to="/singup" text="Don't have account?" anchorText="SingUp" />
-    </Form>
+    </>
   );
 };
 

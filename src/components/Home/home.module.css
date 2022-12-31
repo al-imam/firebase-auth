@@ -1,13 +1,8 @@
 .home {
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 6px 6px;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  width: 30rem;
-  padding: 2rem;
-  margin: 0 auto;
-  border-radius: 0.5rem;
+  padding: 2rem 2rem 0;
 }
 
 .img {
