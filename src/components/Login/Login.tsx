@@ -91,8 +91,8 @@ const Login: React.FunctionComponent = () => {
           dispatch({ type: "password", payload: value })
         }
       />
+      <Anchor to="/forget-password" text="Forget Password?" left={true} />
       <Button text="Log in" disable={loading} />
-      <Anchor to="/forget-password" text="Forget password" />
       <Hr />
       <GoTo to="/singup" text="Don't have account?" anchorText="SingUp" />
     </Form>
