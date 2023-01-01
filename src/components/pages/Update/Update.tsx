@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../Context/AuthContext";
-import emailRegex from "../../../util/emailRegex";
+import emailRegex from "../../../helper/emailRegex";
 import CheckBox from "../../CheckBox/CheckBox";
 import GoTo from "../../GoTO/GoTo";
 import Heading from "../../Heading/Heading";

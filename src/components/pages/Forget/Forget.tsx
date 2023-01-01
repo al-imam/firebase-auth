@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../Context/AuthContext";
-import emailRegex from "../../../util/emailRegex";
+import emailRegex from "../../../helper/emailRegex";
 import GoTo from "../../GoTO/GoTo";
 import Heading from "../../Heading/Heading";
 import Alert from "../../utility/Alert/Alert";
