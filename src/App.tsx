@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Forget from "./components/Forget/Forget";
-import Home from "./components/Home/Home";
-import Login from "./components/Login/Login";
-import SingUp from "./components/SingUp/SingUp";
-import Update from "./components/Update/Update";
+import Forget from "./components/pages/Forget/Forget";
+import Home from "./components/pages/Home/Home";
+import Login from "./components/pages/Login/Login";
+import SingUp from "./components/pages/SingUp/SingUp";
+import Update from "./components/pages/Update/Update";
 import { AuthProvider } from "./Context/AuthContext";
 import PrivateRoute from "./Route/PrivateRoute";
 import PublicRoute from "./Route/PublicRoute";

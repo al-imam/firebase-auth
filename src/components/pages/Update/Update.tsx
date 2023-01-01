@@ -1,16 +1,15 @@
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../Context/AuthContext";
-import emailRegex from "../../util/emailRegex";
-import Alert from "../Alert/Alert";
-import Button from "../Button/Button";
-import CheckBox from "../CheckBox/CheckBox";
-import Form from "../Form/Form";
-import GoTo from "../GoTO/GoTo";
-import Heading from "../Heading/Heading";
-import Input from "../Input/Input";
+import { useAuth } from "../../../Context/AuthContext";
+import emailRegex from "../../../util/emailRegex";
+import CheckBox from "../../CheckBox/CheckBox";
+import GoTo from "../../GoTO/GoTo";
+import Heading from "../../Heading/Heading";
+import Alert from "../../utility/Alert/Alert";
+import Button from "../../utility/Button/Button";
+import Form from "../../utility/Form/Form";
+import Input from "../../utility/Input/Input";
 import { initializerArg, reducer } from "./reducer";
-import classes from "./update.module.css";
 
 function isEmpty(e: string, p: string, cp: string, curp: string) {
   return (

@@ -1,15 +1,14 @@
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../Context/AuthContext";
-import emailRegex from "../../util/emailRegex";
-import Alert from "../Alert/Alert";
-import Button from "../Button/Button";
-import Form from "../Form/Form";
-import GoTo from "../GoTO/GoTo";
-import Heading from "../Heading/Heading";
-import Input from "../Input/Input";
+import { useAuth } from "../../../Context/AuthContext";
+import emailRegex from "../../../util/emailRegex";
+import GoTo from "../../GoTO/GoTo";
+import Heading from "../../Heading/Heading";
+import Alert from "../../utility/Alert/Alert";
+import Button from "../../utility/Button/Button";
+import Form from "../../utility/Form/Form";
+import Input from "../../utility/Input/Input";
 import { initializerArg, reducer } from "./reducer";
-import classes from "./singUp.module.css";
 
 function isEmpty(e: string, p: string, cp: string) {
   return e.length === 0 || p.length === 0 || cp.length === 0;

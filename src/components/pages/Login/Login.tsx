@@ -1,15 +1,15 @@
-import Heading from "../Heading/Heading";
 import { useReducer } from "react";
-import { useAuth } from "../../Context/AuthContext";
-import Anchor from "../Anchor/Anchor";
-import Button from "../Button/Button";
-import Form from "../Form/Form";
-import Input from "../Input/Input";
-import { initializerArg, reducer } from "./reducer";
-import Alert from "../Alert/Alert";
 import { useNavigate } from "react-router-dom";
-import GoTo from "../GoTO/GoTo";
-import emailRegex from "../../util/emailRegex";
+import { useAuth } from "../../../Context/AuthContext";
+import emailRegex from "../../../util/emailRegex";
+import GoTo from "../../GoTO/GoTo";
+import Heading from "../../Heading/Heading";
+import Alert from "../../utility/Alert/Alert";
+import Anchor from "../../utility/Anchor/Anchor";
+import Button from "../../utility/Button/Button";
+import Form from "../../utility/Form/Form";
+import Input from "../../utility/Input/Input";
+import { initializerArg, reducer } from "./reducer";
 
 function isEmpty(e: string, p: string) {
   return e.length === 0 || p.length === 0;

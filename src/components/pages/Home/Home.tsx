@@ -1,10 +1,10 @@
-import Button from "../Button/Button";
-import classes from "./home.module.css";
-import profile from "../../assets/bighead.svg";
-import { useAuth } from "../../Context/AuthContext";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import Alert from "../Alert/Alert";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../Context/AuthContext";
+import profile from "../../../assets/bighead.svg";
+import Alert from "../../utility/Alert/Alert";
+import Button from "../../utility/Button/Button";
+import classes from "./home.module.css";
 
 const Home: React.FunctionComponent = () => {
   const [loading, setLoading] = useState(false);
