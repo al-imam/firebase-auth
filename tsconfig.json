@@ -23,8 +23,8 @@
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/components/pages/*"],
       "@utility/*": ["src/components/utility/*"],
-      "@assets/*": ["src/assets/*"],
-      "@helper/*": ["src/helper/*"]
+      "@helper/*": ["src/helper/*"],
+      "@assets/*": ["src/assets/*"]
     }
   },
   "include": ["src"],

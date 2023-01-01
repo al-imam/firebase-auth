@@ -1,9 +1,9 @@
+import profile from "@assets/bighead.svg";
+import { useAuth } from "@context/AuthContext";
+import Alert from "@utility/Alert/Alert";
+import Button from "@utility/Button/Button";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../Context/AuthContext";
-import profile from "../../../assets/bighead.svg";
-import Alert from "../../utility/Alert/Alert";
-import Button from "../../utility/Button/Button";
 import classes from "./home.module.css";
 
 const Home: React.FunctionComponent = () => {

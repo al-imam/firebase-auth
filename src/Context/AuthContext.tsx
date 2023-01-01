@@ -1,19 +1,19 @@
+import app from "@app/firebase";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  sendPasswordResetEmail,
-  updatePassword,
-  updateEmail,
-  reauthenticateWithCredential,
   EmailAuthProvider,
   getAuth,
   onAuthStateChanged,
+  reauthenticateWithCredential,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signOut,
+  updateEmail,
+  updatePassword,
   User,
   UserCredential,
 } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
-import app from "../firebase";
 
 const auth = getAuth(app);
 

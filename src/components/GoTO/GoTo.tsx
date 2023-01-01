@@ -1,4 +1,4 @@
-import Anchor from "../utility/Anchor/Anchor";
+import Anchor from "@utility/Anchor/Anchor";
 import classes from "./goto.module.css";
 
 interface GoToProps {

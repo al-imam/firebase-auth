@@ -14,6 +14,7 @@ export default defineConfig({
       "@utility": path.resolve(__dirname, "src/components/utility"),
       "@pages": path.resolve(__dirname, "src/components/pages"),
       "@helper": path.resolve(__dirname, "src/helper"),
+      "@assets": path.resolve(__dirname, "src/assets"),
     },
   },
 });

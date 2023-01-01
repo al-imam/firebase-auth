@@ -1,12 +1,12 @@
+import { AuthProvider } from "@context/AuthContext";
+import Forget from "@pages/Forget/Forget";
+import Home from "@pages/Home/Home";
+import Login from "@pages/Login/Login";
+import SingUp from "@pages/SingUp/SingUp";
+import Update from "@pages/Update/Update";
+import PrivateRoute from "@routes/PrivateRoute";
+import PublicRoute from "@routes/PublicRoute";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Forget from "./components/pages/Forget/Forget";
-import Home from "./components/pages/Home/Home";
-import Login from "./components/pages/Login/Login";
-import SingUp from "./components/pages/SingUp/SingUp";
-import Update from "./components/pages/Update/Update";
-import { AuthProvider } from "./Context/AuthContext";
-import PrivateRoute from "./Route/PrivateRoute";
-import PublicRoute from "./Route/PublicRoute";
 
 const App: React.FunctionComponent = () => (
   <BrowserRouter>

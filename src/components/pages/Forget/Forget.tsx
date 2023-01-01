@@ -1,13 +1,13 @@
+import GoTo from "@components/GoTO/GoTo";
+import Heading from "@components/Heading/Heading";
+import { useAuth } from "@context/AuthContext";
+import emailRegex from "@helper/emailRegex";
+import Alert from "@utility/Alert/Alert";
+import Button from "@utility/Button/Button";
+import Form from "@utility/Form/Form";
+import Input from "@utility/Input/Input";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../Context/AuthContext";
-import emailRegex from "../../../helper/emailRegex";
-import GoTo from "../../GoTO/GoTo";
-import Heading from "../../Heading/Heading";
-import Alert from "../../utility/Alert/Alert";
-import Button from "../../utility/Button/Button";
-import Form from "../../utility/Form/Form";
-import Input from "../../utility/Input/Input";
 
 interface InitializerArg {
   loading: boolean;

@@ -1,5 +1,5 @@
+import { useAuth } from "@context/AuthContext";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../Context/AuthContext";
 
 interface Private {
   path: string;
