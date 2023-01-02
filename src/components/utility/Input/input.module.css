@@ -54,6 +54,7 @@
   position: relative;
   margin-inline: 0.5rem;
   border: none;
+  outline: none;
 }
 
 .seen:hover {
@@ -62,13 +63,13 @@
 
 .seen:active {
   background-color: rgba(0, 0, 0, 0.1);
-  box-shadow: none;
 }
 
-.seen:focus-within,
-.seen:focus-within .eye {
-  outline: none;
-  filter: opacity(0.7);
+.seen:focus-visible {
+  box-shadow: var(--shadow-focus) inset 0px 0px 0px 3px;
+}
+.seen:focus-visible .eye {
+  filter: opacity(0.6);
 }
 
 .eye {

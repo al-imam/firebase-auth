@@ -9,6 +9,7 @@
   font-weight: var(--fw-secondary, 700);
   padding: 0.75rem 0;
   user-select: none;
+  outline: none;
   width: 100%;
 }
 
@@ -23,4 +24,8 @@
 .Button:disabled {
   cursor: wait;
   opacity: 0.5;
+}
+
+.Button:focus-visible {
+  box-shadow: var(--outline) 0px 0px 0px 3px;
 }

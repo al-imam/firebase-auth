@@ -6,6 +6,7 @@
   text-align: center;
   text-decoration: none;
   user-select: none;
+  outline: none;
   width: max-content;
 }
 
@@ -15,4 +16,9 @@
 
 .left {
   text-align: left;
+}
+
+.link:focus-visible {
+  border-radius: 3px;
+  box-shadow: var(--outline) inset 0px 0px 0px 2px;
 }
