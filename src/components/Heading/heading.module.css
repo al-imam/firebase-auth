@@ -6,12 +6,13 @@
   background-color: var(--primary-color);
   border-radius: var(--round) var(--round) 0 0;
   display: flex;
-  height: 5rem;
+  height: var(--heading-height, 5rem);
   justify-content: center;
 }
 
 .h1 {
   color: var(--white);
-  font-family: cabin, sans-serif;
+  font-family: var(--ff-primary), sans-serif;
+  font-size: var(--fs-heading, 2.5rem);
   user-select: none;
 }

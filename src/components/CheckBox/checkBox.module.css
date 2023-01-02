@@ -5,8 +5,8 @@
 }
 
 .checkGroup label {
-  font-family: "noto sans";
-  font-size: 1rem;
+  font-family: var(--ff-secondary), sans-serif;
+  font-size: var(--fs-secondary, 1rem);
   user-select: none;
 }
 

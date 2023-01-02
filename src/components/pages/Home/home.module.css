@@ -1,7 +1,7 @@
 .home {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
+  row-gap: var(--row-gap, 1rem);
   padding: 2rem 2rem 0;
 }
 
@@ -13,10 +13,10 @@
 }
 
 .name {
-  font-family: "nato sans", sans-serif;
+  font-family: var(--ff-secondary), sans-serif;
   color: hsl(222, 15%, 35%);
   font-size: 1.125rem;
-  font-weight: 500;
+  font-weight: var(--fw-primary, 500);
   text-align: center;
 }
 
@@ -35,7 +35,7 @@
   margin-inline: auto;
   font-size: 1rem;
   text-decoration: none;
-  font-family: Cabin, sans-serif;
+  font-family: var(--ff-primary), sans-serif;
   color: var(--anchor-fg);
   letter-spacing: 0.5px;
   cursor: pointer;

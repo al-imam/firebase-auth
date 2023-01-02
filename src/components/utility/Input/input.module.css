@@ -10,9 +10,9 @@
   border-radius: 0.25rem;
   color: var(--fg-color);
   caret-color: var(--border-active);
-  font-family: "noto sans", sans-serif;
-  font-weight: 500;
-  font-size: 1.225rem;
+  font-family: var(--ff-secondary), sans-serif;
+  font-weight: var(--fw-primary, 500);
+  font-size: var(--fs-primary, 1.125rem);
   outline: none;
   padding: 0.75rem;
 }

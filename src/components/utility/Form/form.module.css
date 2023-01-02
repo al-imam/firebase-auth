@@ -1,6 +1,6 @@
 .form {
   display: flex;
   flex-direction: column;
-  padding: 3rem 1.5rem 1rem;
-  row-gap: 1rem;
+  padding: var(--form-padding-top, 3rem) 1.5rem 1rem;
+  row-gap: var(--row-gap, 1rem);
 }

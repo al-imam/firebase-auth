@@ -1,18 +1,11 @@
 .link {
-  text-align: center;
-  font-size: 1rem;
-  text-decoration: none;
-  font-family: "cabin", sans-serif;
-  font-weight: 500;
-
   --anchor: hsl(214, 91%, 53%);
-  /* --anchor-hover: hsl(110, 67%, 38%);
-  --anchor-active: hsl(110, 73%, 33%);
-  --anchor-bg: hsl(110 63% 44%); 
-  --anchor-white: hsl(0, 0%, 100%); */
-
   color: var(--anchor);
+  font-family: var(--ff-primary), sans-serif;
+  font-size: var(--fs-secondary, 1rem);
   letter-spacing: 0.5px;
+  text-align: center;
+  text-decoration: none;
   width: max-content;
 }
 
