@@ -23,10 +23,14 @@
 
   --fw-primary: 500;
   --fw-secondary: 700;
+
+  --row-gap: 1rem;
+  --heading-height: 5rem;
+  --form-padding-top: 3rem;
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: var(--round);
   box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 6px 6px;
   margin: 3rem auto 1rem;
@@ -35,5 +39,23 @@
 }
 
 body {
-  background-color: whitesmoke;
+  --opacity: 20%;
+  background: linear-gradient(
+      196deg,
+      hsl(306deg 100% 50% / calc(var(--opacity) / 2)),
+      rgba(255, 0, 0, 0) 45.71%
+    ),
+    linear-gradient(
+      101deg,
+      hsl(247deg 100% 50% / calc(var(--opacity) / 1.5)),
+      rgba(0, 255, 0, 0) 50.71%
+    ),
+    linear-gradient(
+      340deg,
+      hsl(102deg 100% 48% / calc(var(--opacity) / 1.2)),
+      rgba(0, 0, 255, 0) 70.71%
+    );
+  min-height: 100vh;
+  overflow-y: hidden;
+  background-repeat: no-repeat;
 }
