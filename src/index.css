@@ -20,8 +20,9 @@
   --gray-50: hsl(24, 6%, 83%);
   --white: white;
 
-  --bg-input: white;
-  --outline-input: hsl(210, 100%, 95%);
+  --input: white;
+  --shadow-focus: hsl(210, 100%, 87%);
+  --outline: hsl(216, 100%, 73%);
 
   --fs-heading: 2.5rem;
   --fs-primary: 1.125rem;
