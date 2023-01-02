@@ -7,6 +7,7 @@
 .checkGroup label {
   font-family: var(--ff-secondary), sans-serif;
   font-size: var(--fs-secondary, 1rem);
+  color: var(--gray-100);
   user-select: none;
 }
 
@@ -18,4 +19,9 @@
   height: 1.125rem;
   outline: none;
   width: 1.125rem;
+}
+
+.checkGroup input:focus-within {
+  box-shadow: var(--outline) 0px 0px 0px 3px;
+  background-color: var(--outline);
 }
