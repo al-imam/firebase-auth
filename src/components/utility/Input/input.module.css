@@ -62,11 +62,13 @@
 
 .seen:active {
   background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
-.seen:focus-within {
-  background-color: rgba(0, 0, 0, 0.15);
+.seen:focus-within,
+.seen:focus-within .eye {
   outline: none;
+  filter: opacity(0.7);
 }
 
 .eye {
@@ -76,5 +78,5 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  filter: opacity(0.5);
+  filter: opacity(0.3);
 }
