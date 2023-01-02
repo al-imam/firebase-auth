@@ -7,8 +7,15 @@
   box-sizing: border-box;
 }
 
-.container {
+:root {
   --round: 0.5rem;
+  --primary: #ff4dff;
+  --primary-hover: hsl(214deg 82% 49%);
+  --primary-active: hsl(218deg 51% 33%);
+  --secondary: ;
+}
+
+.container {
   background-color: white;
   border-radius: var(--round);
   box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 6px 6px;
