@@ -9,20 +9,20 @@
 
 :root {
   --round: 0.5rem;
-  --primary: hsl(214deg 89% 52%);
-  --primary-hover: hsl(214deg 82% 49%);
-  --primary-active: hsl(218deg 51% 33%);
+  --primary: hsl(341deg 66% 67%);
+  --primary-hover: hsl(341deg 66% 60%);
+  --primary-active: hsl(335deg 51% 33%);
 
-  --danger: hsl(351deg 100% 95%);
-  --success: hsl(120deg 98% 92%);
+  --danger: hsl(351 100% 95%);
+  --success: hsl(120 98% 92%);
 
   --gray-100: hsl(215, 19%, 35%);
   --gray-50: hsl(24, 6%, 83%);
   --white: white;
 
   --input: white;
-  --shadow-focus: hsl(210, 100%, 87%);
-  --outline: hsl(216, 100%, 73%);
+  --shadow-focus: hsl(341 100% 94% / 0.8);
+  --outline: hsl(341, 100%, 89%);
 
   --fs-heading: 2.5rem;
   --fs-primary: 1.125rem;

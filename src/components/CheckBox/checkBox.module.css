@@ -12,6 +12,7 @@
 
 .checkGroup input {
   accent-color: var(--primary);
+  caret-color: aqua;
   border-radius: 50%;
   border: 1px solid darkgray;
   height: 1.125rem;
