@@ -1,22 +1,80 @@
 .inputs {
-  background-color: var(--bg-input, white);
-  border-radius: 0.25rem;
-  border: 1px solid var(--gray-50);
+  background-color: var(--input, white);
   caret-color: var(--primary);
   color: var(--gray-100);
   font-family: var(--ff-secondary), sans-serif;
   font-size: var(--fs-primary, 1.125rem);
   font-weight: var(--fw-primary, 500);
-  outline: none;
+  border: none;
   padding: 0.75rem;
-}
-
-.inputs:focus {
-  border: 1px solid var(--primary);
-  box-shadow: var(--outline-input) 0px 0px 0px 2px;
 }
 
 .inputs::placeholder {
   color: var(--gray-50);
   user-select: none;
+}
+
+.text {
+  outline: 1px solid var(--gray-50);
+  border-radius: 0.25rem;
+}
+
+.text:focus {
+  outline: 1px solid var(--outline);
+  box-shadow: var(--shadow-focus) 0px 0px 0px 3px;
+}
+
+.password {
+  flex-grow: 1;
+  border-radius: 0.25rem;
+}
+
+.group {
+  background-color: var(--input, white);
+  border-radius: 0.25rem;
+  outline: 1px solid var(--gray-50);
+  display: flex;
+  align-items: center;
+}
+
+.group:has(.password:focus) {
+  outline: 1px solid var(--outline);
+  box-shadow: var(--shadow-focus) 0px 0px 0px 3px;
+}
+
+.password:focus {
+  outline: none;
+}
+
+.seen {
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  background-color: hsl(0 0% 100% / 0);
+  position: relative;
+  margin-inline: 0.5rem;
+  border: none;
+}
+
+.seen:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.seen:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.seen:focus-within {
+  background-color: rgba(0, 0, 0, 0.15);
+  outline: none;
+}
+
+.eye {
+  height: 1.5rem;
+  width: 1.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: opacity(0.5);
 }
