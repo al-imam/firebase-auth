@@ -1,16 +1,16 @@
 .link {
-  --anchor: hsl(214, 91%, 53%);
-  color: var(--anchor);
+  color: var(--primary);
   font-family: var(--ff-primary), sans-serif;
   font-size: var(--fs-secondary, 1rem);
   letter-spacing: 0.5px;
   text-align: center;
   text-decoration: none;
+  user-select: none;
   width: max-content;
 }
 
 .link:hover {
-  text-decoration: 1px underline var(--anchor);
+  text-decoration: 1px underline var(--primary);
 }
 
 .left {

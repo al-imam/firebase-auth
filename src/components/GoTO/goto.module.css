@@ -1,6 +1,7 @@
 .p {
+  color: var(--gray-100);
   font-family: var(--ff-primary), sans-serif;
-  color: hsl(222, 15%, 35%);
-  text-align: center;
   font-size: var(--fs-secondary, 1rem);
+  text-align: center;
+  user-select: none;
 }

@@ -3,16 +3,25 @@
 *,
 *::after,
 *::before {
-  margin: 0;
   box-sizing: border-box;
+  margin: 0;
 }
 
 :root {
   --round: 0.5rem;
-  --primary: #ff4dff;
+  --primary: hsl(214deg 89% 52%);
   --primary-hover: hsl(214deg 82% 49%);
   --primary-active: hsl(218deg 51% 33%);
-  --secondary: ;
+
+  --danger: hsl(351deg 100% 95%);
+  --success: hsl(120deg 98% 92%);
+
+  --gray-100: hsl(215, 19%, 35%);
+  --gray-50: hsl(24, 6%, 83%);
+  --white: white;
+
+  --bg-input: white;
+  --outline-input: hsl(210, 100%, 95%);
 
   --fs-heading: 2.5rem;
   --fs-primary: 1.125rem;
@@ -27,10 +36,12 @@
   --row-gap: 1rem;
   --heading-height: 5rem;
   --form-padding-top: 3rem;
+
+  --profile-width: 10rem;
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 1);
   border-radius: var(--round);
   box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 6px 6px;
   margin: 3rem auto 1rem;
@@ -55,7 +66,7 @@ body {
       hsl(102deg 100% 48% / calc(var(--opacity) / 1.2)),
       rgba(0, 0, 255, 0) 70.71%
     );
+  background-repeat: no-repeat;
   min-height: 100vh;
   overflow-y: hidden;
-  background-repeat: no-repeat;
 }

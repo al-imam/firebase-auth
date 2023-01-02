@@ -1,30 +1,26 @@
 .Button {
-  --bg-color: hsl(214deg 89% 52%);
-  --bg-hover: hsl(214deg 82% 49%);
-  --bg-active: hsl(218deg 51% 33%);
-  --fg-color: hsl(0, 0%, 100%);
-
-  background-color: var(--bg-color);
-  border: none;
+  background-color: var(--primary);
   border-radius: 0.25rem;
-  color: var(--fg-color);
+  border: none;
+  color: var(--white);
   display: block;
-  font-size: var(--fs-primary, 1.125rem);
   font-family: var(--ff-primary), sans-serif;
+  font-size: var(--fs-primary, 1.125rem);
   font-weight: var(--fw-secondary, 700);
   padding: 0.75rem 0;
+  user-select: none;
   width: 100%;
 }
 
 .Button:hover:enabled {
-  background-color: var(--bg-hover);
+  background-color: var(--primary-hover);
 }
 
 .Button:active:enabled {
-  background-color: var(--bg-active);
+  background-color: var(--primary-active);
 }
 
 .Button:disabled {
-  opacity: 0.5;
   cursor: wait;
+  opacity: 0.5;
 }

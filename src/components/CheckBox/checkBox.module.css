@@ -1,7 +1,7 @@
 .checkGroup {
-  display: flex;
   align-items: center;
   column-gap: 0.5rem;
+  display: flex;
 }
 
 .checkGroup label {
@@ -11,9 +11,10 @@
 }
 
 .checkGroup input {
-  height: 1.125rem;
-  width: 1.125rem;
+  accent-color: var(--primary);
   border-radius: 50%;
   border: 1px solid darkgray;
+  height: 1.125rem;
   outline: none;
+  width: 1.125rem;
 }
