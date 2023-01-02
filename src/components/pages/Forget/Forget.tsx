@@ -77,7 +77,7 @@ const Forget: React.FunctionComponent = () => {
         {error && <Alert message={error} />}
         {success && <Alert message={success} variant="success" />}
         <Input
-          type="text"
+          type="email"
           placeholder="Email address"
           value={email}
           ac="username email"

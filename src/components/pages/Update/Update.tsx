@@ -6,7 +6,7 @@ import emailRegex from "@helper/emailRegex";
 import Alert from "@utility/Alert/Alert";
 import Button from "@utility/Button/Button";
 import Form from "@utility/Form/Form";
-import Input from "@utility/Input/Input";
+import Input, { PasswordInput } from "@utility/Input/Input";
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { initializerArg, reducer } from "./reducer";
@@ -164,9 +164,8 @@ const Update: React.FunctionComponent = () => {
       <Form onSubmit={onSubmit}>
         {error && <Alert message={error} />}
         {success && <Alert message={success} variant="success" />}
-        <Input
+        <PasswordInput
           value={currentPassword}
-          type="password"
           placeholder="Current password"
           ac="current-password"
           dispatch={(value: string) =>
@@ -199,18 +198,16 @@ const Update: React.FunctionComponent = () => {
         />
         {editPassword && (
           <>
-            <Input
+            <PasswordInput
               value={password}
-              type="password"
               placeholder="New password"
               ac="new-password"
               dispatch={(value: string) =>
                 dispatch({ type: "password", payload: value })
               }
             />
-            <Input
+            <PasswordInput
               value={confirmPassword}
-              type="password"
               placeholder="New confirm password"
               ac="new-password"
               dispatch={(value: string) =>
