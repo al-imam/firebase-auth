@@ -10,6 +10,7 @@ import Input from "@utility/Input/Input";
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { initializerArg, reducer } from "./reducer";
+import { PasswordInput } from "@utility/Input/Input";
 
 function isEmpty(e: string, p: string) {
   return e.length === 0 || p.length === 0;
@@ -82,8 +83,7 @@ const Login: React.FunctionComponent = () => {
             dispatch({ type: "email", payload: value })
           }
         />
-        <Input
-          type="password"
+        <PasswordInput
           placeholder="Password"
           value={password}
           ac="current-password"
