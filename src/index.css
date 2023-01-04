@@ -41,15 +41,6 @@
   --profile-width: 10rem;
 }
 
-.container {
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: var(--round);
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 6px 6px;
-  margin: 3rem auto 1rem;
-  padding-bottom: 2rem;
-  width: 30rem;
-}
-
 body {
   --opacity: 20%;
   background: linear-gradient(
@@ -70,4 +61,20 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
   overflow-y: hidden;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: var(--round);
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px, rgba(0, 0, 0, 0.1) 0px 6px 6px;
+  margin: 3rem auto 1rem;
+  padding-bottom: 2rem;
+  width: 30rem;
+  transition: width 200ms ease;
+}
+
+@media only screen and (max-width: 40rem) {
+  .container {
+    width: min(calc(100vw - 3rem), 25rem);
+  }
 }
